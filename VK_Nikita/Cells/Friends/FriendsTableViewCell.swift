@@ -16,17 +16,6 @@ class FriendsTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var avatar: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        
-    }
-    
     func configure (userInfo:Users) {
         self.name.text = userInfo.name
         self.lastname.text = userInfo.lastname

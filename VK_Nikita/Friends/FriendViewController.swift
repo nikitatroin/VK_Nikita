@@ -11,6 +11,17 @@ class FriendViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "logout"
+                {
+                    if let vc = segue.destination as? ViewController
+                    {
+                        vc.modalPresentationStyle = .fullScreen
+
+                    }
+                }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Никита" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DV-Pj-PL8">
-                        <rect key="frame" x="5" y="15" width="58" height="20"/>
+                        <rect key="frame" x="25" y="15" width="58" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Троян" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3T-5V-vGS">
-                        <rect key="frame" x="68" y="15" width="48" height="20"/>
+                        <rect key="frame" x="83" y="15" width="48" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -38,14 +38,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="2DV-Pj-PL8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="1zp-UJ-kvj"/>
-                    <constraint firstItem="d3T-5V-vGS" firstAttribute="leading" secondItem="2DV-Pj-PL8" secondAttribute="trailing" constant="5" id="6yJ-LD-x0v"/>
                     <constraint firstAttribute="bottom" secondItem="d3T-5V-vGS" secondAttribute="bottom" constant="15" id="AZS-9b-xaH"/>
-                    <constraint firstItem="2DV-Pj-PL8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="CD2-sA-UXX"/>
-                    <constraint firstItem="2DV-Pj-PL8" firstAttribute="width" relation="lessThanOrEqual" secondItem="d3T-5V-vGS" secondAttribute="width" multiplier="1.20833" id="Gfi-yD-q1f"/>
+                    <constraint firstItem="2DV-Pj-PL8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="CD2-sA-UXX"/>
                     <constraint firstAttribute="bottom" secondItem="cum-bC-dg8" secondAttribute="bottom" constant="5" id="WNO-i0-9Nx"/>
                     <constraint firstAttribute="trailing" secondItem="cum-bC-dg8" secondAttribute="trailing" constant="15" id="btK-Jd-fdq"/>
                     <constraint firstItem="d3T-5V-vGS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="jxJ-p3-QLJ"/>
-                    <constraint firstItem="cum-bC-dg8" firstAttribute="leading" secondItem="d3T-5V-vGS" secondAttribute="trailing" constant="210" id="sJc-oY-lO3"/>
+                    <constraint firstItem="cum-bC-dg8" firstAttribute="leading" secondItem="d3T-5V-vGS" secondAttribute="trailing" constant="195" id="sJc-oY-lO3"/>
                     <constraint firstItem="cum-bC-dg8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="sYO-tI-v1Y"/>
                     <constraint firstAttribute="bottom" secondItem="2DV-Pj-PL8" secondAttribute="bottom" constant="15" id="yWW-EF-4XD"/>
                 </constraints>

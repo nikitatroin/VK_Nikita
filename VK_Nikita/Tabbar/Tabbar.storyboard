@@ -20,18 +20,19 @@
         <scene sceneID="1u9-j9-cxj">
             <objects>
                 <viewControllerPlaceholder storyboardName="Groups" id="XBs-jO-R4F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="g0g-AD-m0H"/>
+                    <tabBarItem key="tabBarItem" id="g0g-AD-m0H"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOr-xJ-1Ts" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="521" y="516"/>
+            <point key="canvasLocation" x="604" y="516"/>
         </scene>
-        <!--Tabbar View Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="8yG-k7-Yd8">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8v1-ba-MAQ" customClass="TabbarViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8v1-ba-MAQ" customClass="TabBarViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hcD-r5-wy0">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

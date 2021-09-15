@@ -1,16 +1,20 @@
 //
-//  TabbarViewController.swift
+//  TabBarViewController.swift
 //  VK_Nikita
 //
-//  Created by Никита Троян on 13.09.2021.
+//  Created by Никита Троян on 14.09.2021.
 //
 
 import UIKit
 
-class TabbarViewController: UITabBarController {
+class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewControllers![0].tabBarItem.title = "Friends"
+        self.viewControllers![1].tabBarItem.title = "Groups"
     }
+    
+
 
 }

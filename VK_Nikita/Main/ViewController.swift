@@ -30,6 +30,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWasShow),
@@ -87,7 +88,7 @@ class ViewController: UIViewController {
     
     private func showUserScene(){
         let vc = R.Storyboard.Tabbar.instantiateInitialViewController()
-        if let vc = vc as? TabbarViewController {
+        if let vc = vc as? TabBarViewController {
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
             
