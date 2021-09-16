@@ -9,9 +9,9 @@ import UIKit
 
 class FriendsCollectionViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet private weak var avatar: UIImageView!
+    
+    func configure (avatar:UIImageView) {
+        self.avatar = avatar
     }
-
 }

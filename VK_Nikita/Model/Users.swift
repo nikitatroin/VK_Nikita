@@ -12,4 +12,14 @@ struct Users {
     var lastname:String
     var avatar: UIImageView
     
+    init(name:String, avatar:UIImageView, lastname:String) {
+        self.avatar = avatar
+        self.name = name
+        self.lastname = lastname
+    }
+}
+
+struct UsersAvatar {
+    var avatar: UIImageView
+    
 }

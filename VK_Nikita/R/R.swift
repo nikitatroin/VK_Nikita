@@ -17,11 +17,13 @@ enum R {
     
     enum Cell {
         static let friendTableCell:UINib = .init(nibName: "FriendsTableViewCell", bundle: nil)
+        static let friendCollectionCell:UINib = .init(nibName: "FriendsCollectionViewCell", bundle: nil)
         static let groupTableCell:UINib = .init(nibName: "GroupsTableViewCell", bundle: nil)
     }
     
     enum Identifier {
         static let friendTableCell:String = .init("friendTableCell")
         static let groupsTableCell:String = .init("groupsTableCell")
+        static let friendCollectionCell:String = .init("friendCollectionCell")
     }
 }

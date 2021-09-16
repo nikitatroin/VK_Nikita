@@ -17,20 +17,21 @@ class AddedGroupsViewController: UIViewController {
     
     var displayItem: [Groups] = []
     
-    init (displayItem:[Groups]) {
-        self.displayItem = displayItem
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+//    init (displayItem:[Groups]) {
+//        self.displayItem = displayItem
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isEditing = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +62,13 @@ extension AddedGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(displayItem[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            displayItem.remove(at: indexPath.row)
+        }
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
 }

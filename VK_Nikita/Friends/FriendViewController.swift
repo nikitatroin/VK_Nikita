@@ -11,6 +11,14 @@ class FriendViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
+    private var displayItem: [Users] = [
+        .init(name: "Nikita", avatar: UIImageView(image: UIImage(imageLiteralResourceName: "Я")), lastname: "Troyan")
+        ]
+    
+    private var userPhotos: [UsersAvatar] = [
+        .init(avatar: UIImageView(image: UIImage(imageLiteralResourceName: "Я")))
+        ]
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "logout"
                 {
@@ -20,7 +28,7 @@ class FriendViewController: UIViewController {
 
                     }
                 }
-    }
+            }
     
     
     override func viewDidLoad() {
@@ -29,11 +37,9 @@ class FriendViewController: UIViewController {
         
     }
     
-    private var displayItem: [Users] = [
-        .init(name: "Nikita", lastname: "Troyan", avatar: UIImageView(image: UIImage(imageLiteralResourceName: "Я")))
-        ]
-
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
 }
 
@@ -53,6 +59,13 @@ extension FriendViewController: UITableViewDelegate {
         (cell as? FriendsTableViewCell)?.configure(userInfo: displayItem[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let avatars = userPhotos[indexPath.row]
+        let vc = FriendCollectionViewController(userPhotos: [avatars.avatar])
+        present(vc, animated: true, completion: nil)
+        
+    }
     
 }
 

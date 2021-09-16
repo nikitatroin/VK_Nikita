@@ -47,10 +47,9 @@ extension AllGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let category = displayItem[indexPath.row]
-        let vc = AddedGroupsViewController(displayItem: displayItem)
-        vc.displayItem[indexPath.row].image = category.image
-        vc.displayItem[indexPath.row].name = category.name
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = AddedGroupsViewController()
+        vc.displayItem.append(category)
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
