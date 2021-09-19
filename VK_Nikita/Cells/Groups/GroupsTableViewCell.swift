@@ -13,9 +13,9 @@ class GroupsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var avatar: UIImageView!
     
-    func configure (userInfo:Groups) {
-        self.name.text = userInfo.name
+    func configure (_ userInfo:Groups) {
         self.avatar = userInfo.image
+        self.name.text = userInfo.name
     }
     
 }

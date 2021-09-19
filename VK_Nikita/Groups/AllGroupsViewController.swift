@@ -40,20 +40,18 @@ extension AllGroupsViewController: UITableViewDataSource {
 
 extension AllGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as? GroupsTableViewCell)?.configure(userInfo: displayItem[indexPath.row])
+        (cell as? GroupsTableViewCell)?.configure(displayItem[indexPath.row])
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let category = displayItem[indexPath.row]
-        let vc = AddedGroupsViewController()
-        vc.displayItem.append(category)
-        navigationController?.popToRootViewController(animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "addedGroup") as? AddedGroupsViewController
+        vc?.displayItem.append(displayItem[indexPath.row])
+        navigationController?.pushViewController(vc!, animated: true)
     }
-}
 
-    
+}
    
     
 

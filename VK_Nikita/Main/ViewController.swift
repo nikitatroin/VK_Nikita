@@ -7,8 +7,13 @@
 
 import UIKit
 
+@IBDesignable
 class ViewController: UIViewController {
 
+
+    
+    @IBOutlet weak var Gradient: UIView!
+    
     @IBOutlet private weak var login:UITextField!
     
     @IBOutlet private weak var password: UITextField!
@@ -22,6 +27,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradient()
         let hideKeyboardGesture = UITapGestureRecognizer(target: self,
                                                       action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
@@ -94,6 +100,26 @@ class ViewController: UIViewController {
             
         }
     }
+    
+        private func addGradient() {
+            let layer = CAGradientLayer()
+            layer.colors = [
+                UIColor.blue.cgColor,
+                UIColor.white.cgColor,
+                UIColor.blue.cgColor,
+            ]
+            layer.locations = [
+                0.3,
+                0.5,
+                0.8
+            ]
+            
+            layer.startPoint = CGPoint.init(x: 0, y: 0)
+            layer.endPoint = CGPoint.init(x: 0, y: 1)
+            
+            self.Gradient.layer.addSublayer(layer)
+            layer.frame = self.Gradient.bounds
+        }
 
 }
 

@@ -11,7 +11,7 @@ class FriendViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-    private var displayItem: [Users] = [
+    var displayItem: [Users] = [
         .init(name: "Nikita", avatar: UIImageView(image: UIImage(imageLiteralResourceName: "Я")), lastname: "Troyan")
         ]
     
@@ -22,10 +22,10 @@ class FriendViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "logout"
                 {
-                    if let vc = segue.destination as? ViewController
+            if let vc = segue.destination as? ViewController
                     {
                         vc.modalPresentationStyle = .fullScreen
-
+                        present(vc, animated: true)
                     }
                 }
             }
@@ -61,9 +61,9 @@ extension FriendViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let avatars = userPhotos[indexPath.row]
-        let vc = FriendCollectionViewController(userPhotos: [avatars.avatar])
-        present(vc, animated: true, completion: nil)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
+        vc?.avatar = displayItem[0].avatar
+        self.navigationController?.pushViewController(vc!, animated: true)
         
     }
     

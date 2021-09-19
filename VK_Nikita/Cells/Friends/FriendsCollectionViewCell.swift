@@ -9,7 +9,7 @@ import UIKit
 
 class FriendsCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet private weak var avatar: UIImageView!
+    @IBOutlet weak var avatar: UIImageView!
     
     func configure (avatar:UIImageView) {
         self.avatar = avatar

@@ -8,6 +8,6 @@
 import UIKit
 
 struct Groups {
-    var name:String
+    var name: String
     var image: UIImageView
 }

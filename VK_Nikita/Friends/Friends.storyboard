@@ -12,7 +12,7 @@
         <!--Friends-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="FriendViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="friendVC" id="Y6W-OH-hqX" customClass="FriendViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,7 +84,7 @@
         <!--Friend Collection View Controller-->
         <scene sceneID="fDV-zU-20I">
             <objects>
-                <viewController id="9pY-Eq-3Sv" customClass="FriendCollectionViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="friendCollectionVC" id="9pY-Eq-3Sv" customClass="FriendCollectionViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W7x-8Y-f2n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,6 +108,10 @@
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="9pY-Eq-3Sv" id="6Ee-Za-5o9"/>
+                                    <outlet property="delegate" destination="9pY-Eq-3Sv" id="jaD-na-edk"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QAk-Xd-Ylj"/>
@@ -120,6 +124,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="n1V-oL-amI"/>
+                    <connections>
+                        <outlet property="collectionView" destination="FID-IJ-TOU" id="GaY-jD-ajZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXB-R2-rSS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

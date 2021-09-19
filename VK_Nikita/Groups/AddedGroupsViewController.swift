@@ -17,15 +17,6 @@ class AddedGroupsViewController: UIViewController {
     
     var displayItem: [Groups] = []
     
-//    init (displayItem:[Groups]) {
-//        self.displayItem = displayItem
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
@@ -36,6 +27,7 @@ class AddedGroupsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -56,7 +48,8 @@ extension AddedGroupsViewController: UITableViewDataSource {
 
 extension AddedGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as? GroupsTableViewCell)?.configure(userInfo: displayItem[indexPath.row])
+    (cell as? GroupsTableViewCell)?.avatar = displayItem[indexPath.row].image
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -24,6 +24,6 @@ enum R {
     enum Identifier {
         static let friendTableCell:String = .init("friendTableCell")
         static let groupsTableCell:String = .init("groupsTableCell")
-        static let friendCollectionCell:String = .init("friendCollectionCell")
+        static let friendCollectionCell:String = .init("collectionViewCell")
     }
 }

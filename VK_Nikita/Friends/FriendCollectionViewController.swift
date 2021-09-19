@@ -9,45 +9,41 @@ import UIKit
 
 class FriendCollectionViewController: UIViewController {
     
-    let collectionView:UICollectionView = {
-       let collection = UICollectionView()
-        collection.register(R.Cell.friendCollectionCell, forCellWithReuseIdentifier: R.Identifier.friendCollectionCell)
-       return collection
-   }()
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    var userPhotos: [UIImageView] = []
-    
-    init(userPhotos:[UIImageView]) {
-        self.userPhotos = userPhotos
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
+    var avatar = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        view.backgroundColor = .systemBackground
+        collectionView.register(R.Cell.friendCollectionCell, forCellWithReuseIdentifier: R.Identifier.friendCollectionCell)
+        
     }
     
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
+        
     }
 }
 
 extension FriendCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        userPhotos.count
+        1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.friendCollectionCell, for: indexPath)
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let contentSize = self.collectionView.frame.width
+        let rowHeight: CGFloat = 300
+        let rowWidht = contentSize
+    
+        return .init(width: rowWidht, height: rowHeight)
     }
     
     
@@ -55,7 +51,7 @@ extension FriendCollectionViewController: UICollectionViewDataSource, UICollecti
 
 extension FriendCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        (cell as? FriendsCollectionViewCell)?.configure(avatar: userPhotos[indexPath.row])
+        (cell as? FriendsCollectionViewCell)?.configure(avatar: self.avatar)
     }
     
     
