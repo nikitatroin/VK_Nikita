@@ -9,7 +9,10 @@ import UIKit
 
 class FriendViewController: UIViewController {
     
+    
     @IBOutlet private weak var tableView: UITableView!
+    
+
     
     var displayItem: [Users] = [
         .init(name: "Nikita", avatar: UIImageView(image: UIImage(imageLiteralResourceName: "Я")), lastname: "Troyan")
@@ -34,6 +37,7 @@ class FriendViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(R.Cell.friendTableCell, forCellReuseIdentifier: R.Identifier.friendTableCell)
+ 
         
     }
     
@@ -62,7 +66,7 @@ extension FriendViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
-        vc?.avatar = displayItem[0].avatar
+        vc?.avatar = displayItem[indexPath.row].avatar
         self.navigationController?.pushViewController(vc!, animated: true)
         
     }

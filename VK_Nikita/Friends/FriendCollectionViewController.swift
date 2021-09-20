@@ -52,6 +52,7 @@ extension FriendCollectionViewController: UICollectionViewDataSource, UICollecti
 extension FriendCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         (cell as? FriendsCollectionViewCell)?.configure(avatar: self.avatar)
+        
     }
     
     

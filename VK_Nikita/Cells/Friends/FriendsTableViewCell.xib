@@ -22,28 +22,40 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Троян" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3T-5V-vGS">
-                        <rect key="frame" x="83" y="15" width="48" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Я" translatesAutoresizingMaskIntoConstraints="NO" id="cum-bC-dg8">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVm-rF-y6y" customClass="test2" customModule="VK_Nikita" customModuleProvider="target">
+                        <rect key="frame" x="328" y="5" width="68" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="68" id="5p1-sC-LhU"/>
+                            <constraint firstAttribute="height" constant="40" id="dvL-Wh-Ljo"/>
+                        </constraints>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Я" translatesAutoresizingMaskIntoConstraints="NO" id="cum-bC-dg8" customClass="test" customModule="VK_Nikita" customModuleProvider="target">
                         <rect key="frame" x="326" y="5" width="73" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="2ex-t9-Ct2"/>
                             <constraint firstAttribute="width" constant="73" id="6f4-iX-pTy"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Троян" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3T-5V-vGS">
+                        <rect key="frame" x="93" y="15" width="113" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2DV-Pj-PL8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="1zp-UJ-kvj"/>
-                    <constraint firstAttribute="bottom" secondItem="d3T-5V-vGS" secondAttribute="bottom" constant="15" id="AZS-9b-xaH"/>
+                    <constraint firstItem="2DV-Pj-PL8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2ap-AZ-hNG"/>
+                    <constraint firstItem="d3T-5V-vGS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="635-gM-sJQ"/>
                     <constraint firstItem="2DV-Pj-PL8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="CD2-sA-UXX"/>
+                    <constraint firstItem="EVm-rF-y6y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="LiU-Ua-hVM"/>
+                    <constraint firstItem="cum-bC-dg8" firstAttribute="leading" secondItem="d3T-5V-vGS" secondAttribute="trailing" constant="120" id="TVr-WR-QG5"/>
+                    <constraint firstAttribute="bottom" secondItem="EVm-rF-y6y" secondAttribute="bottom" constant="5" id="TkM-4H-WrR"/>
                     <constraint firstAttribute="bottom" secondItem="cum-bC-dg8" secondAttribute="bottom" constant="5" id="WNO-i0-9Nx"/>
                     <constraint firstAttribute="trailing" secondItem="cum-bC-dg8" secondAttribute="trailing" constant="15" id="btK-Jd-fdq"/>
-                    <constraint firstItem="d3T-5V-vGS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="jxJ-p3-QLJ"/>
-                    <constraint firstItem="cum-bC-dg8" firstAttribute="leading" secondItem="d3T-5V-vGS" secondAttribute="trailing" constant="195" id="sJc-oY-lO3"/>
+                    <constraint firstItem="d3T-5V-vGS" firstAttribute="leading" secondItem="2DV-Pj-PL8" secondAttribute="trailing" constant="10" id="ill-Eu-JrQ"/>
+                    <constraint firstAttribute="trailing" secondItem="EVm-rF-y6y" secondAttribute="trailing" constant="18" id="oZR-mh-IEc"/>
                     <constraint firstItem="cum-bC-dg8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="sYO-tI-v1Y"/>
                     <constraint firstAttribute="bottom" secondItem="2DV-Pj-PL8" secondAttribute="bottom" constant="15" id="yWW-EF-4XD"/>
                 </constraints>
@@ -53,6 +65,7 @@
                 <outlet property="avatar" destination="cum-bC-dg8" id="TS9-TB-v14"/>
                 <outlet property="lastname" destination="d3T-5V-vGS" id="v0W-sx-a5R"/>
                 <outlet property="name" destination="2DV-Pj-PL8" id="aXO-gM-S7V"/>
+                <outlet property="test2" destination="EVm-rF-y6y" id="oEQ-XR-Qwf"/>
             </connections>
             <point key="canvasLocation" x="205.79710144927537" y="87.053571428571431"/>
         </tableViewCell>

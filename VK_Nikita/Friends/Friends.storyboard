@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-ic-JFm">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="384" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendTableCell" id="Fn4-s2-UPn">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="384" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fn4-s2-UPn" id="fQe-Ao-rlp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="384" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -38,14 +38,22 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="sVn-MW-6mb"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwg-OC-t1N" customClass="NamePicker" customModule="VK_Nikita" customModuleProvider="target">
+                                <rect key="frame" x="384" y="88" width="30" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="LWq-ic-JFm" secondAttribute="bottom" id="6ed-t6-SYR"/>
                             <constraint firstItem="LWq-ic-JFm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6jj-5e-4Pr"/>
+                            <constraint firstItem="iwg-OC-t1N" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="72T-OY-BDI"/>
                             <constraint firstItem="LWq-ic-JFm" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Fbv-iC-EYO"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LWq-ic-JFm" secondAttribute="trailing" id="a1T-rp-w4a"/>
+                            <constraint firstItem="iwg-OC-t1N" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="P4K-u0-6vX"/>
+                            <constraint firstItem="iwg-OC-t1N" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="Zt9-kU-mlo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LWq-ic-JFm" secondAttribute="trailing" constant="30" id="a1T-rp-w4a"/>
+                            <constraint firstItem="iwg-OC-t1N" firstAttribute="leading" secondItem="LWq-ic-JFm" secondAttribute="trailing" id="qML-rI-tlf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Friends" id="De6-Ds-j9w">

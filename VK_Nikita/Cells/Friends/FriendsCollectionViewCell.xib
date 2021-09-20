@@ -19,23 +19,57 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Я" translatesAutoresizingMaskIntoConstraints="NO" id="Onf-sU-CGz">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RZZ-qG-eZx">
+                        <rect key="frame" x="65" y="121.5" width="30" height="27.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="V2n-Zk-1xd"/>
+                            <constraint firstAttribute="height" constant="30" id="u83-Ul-IHF"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tF-G7-sGa">
+                        <rect key="frame" x="98" y="129" width="11" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JyO-jW-KPb" customClass="UIControl">
+                        <rect key="frame" x="67" y="120" width="30" height="30"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="CYM-2P-f6p"/>
+                            <constraint firstAttribute="height" constant="30" id="aL0-gD-Mro"/>
+                        </constraints>
+                        <connections>
+                            <action selector="control:" destination="gTV-IL-0wX" eventType="touchUpInside" id="4mK-rC-4qd"/>
+                        </connections>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="3tF-G7-sGa" firstAttribute="leading" secondItem="RZZ-qG-eZx" secondAttribute="trailing" constant="3" id="0OE-HU-z6e"/>
+                <constraint firstAttribute="trailing" secondItem="RZZ-qG-eZx" secondAttribute="trailing" constant="55" id="0as-Dh-J6g"/>
                 <constraint firstAttribute="bottom" secondItem="Onf-sU-CGz" secondAttribute="bottom" id="3pe-xJ-zsP"/>
+                <constraint firstAttribute="bottom" secondItem="JyO-jW-KPb" secondAttribute="bottom" id="BAF-Zk-xZA"/>
                 <constraint firstItem="Onf-sU-CGz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="CQk-IS-npQ"/>
+                <constraint firstAttribute="bottom" secondItem="RZZ-qG-eZx" secondAttribute="bottom" id="Eki-TX-vKS"/>
+                <constraint firstItem="3tF-G7-sGa" firstAttribute="leading" secondItem="JyO-jW-KPb" secondAttribute="trailing" constant="1" id="c0m-yt-DaY"/>
                 <constraint firstAttribute="trailing" secondItem="Onf-sU-CGz" secondAttribute="trailing" id="cts-ot-dQZ"/>
+                <constraint firstAttribute="bottom" secondItem="3tF-G7-sGa" secondAttribute="bottom" id="hiS-74-Acm"/>
                 <constraint firstItem="Onf-sU-CGz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="msE-MQ-V6h"/>
             </constraints>
             <size key="customSize" width="138" height="108"/>
             <connections>
                 <outlet property="avatar" destination="Onf-sU-CGz" id="9O9-BY-lPH"/>
+                <outlet property="control1" destination="JyO-jW-KPb" id="xIK-3F-fEZ"/>
+                <outlet property="heart" destination="RZZ-qG-eZx" id="a6n-du-pp5"/>
+                <outlet property="heartCount" destination="3tF-G7-sGa" id="w1G-Ut-Ghw"/>
             </connections>
-            <point key="canvasLocation" x="162.31884057971016" y="103.79464285714285"/>
+            <point key="canvasLocation" x="205.79710144927537" y="93.75"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="Я" width="640" height="640"/>
     </resources>
 </document>
