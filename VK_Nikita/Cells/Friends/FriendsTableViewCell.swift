@@ -21,8 +21,6 @@ class FriendsTableViewCell: UITableViewCell {
         self.name.text = userInfo.name
         self.lastname.text = userInfo.lastname
         self.avatar = userInfo.avatar as? test
-      
-
     }
     
 }

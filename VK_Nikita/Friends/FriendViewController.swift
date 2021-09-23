@@ -12,7 +12,11 @@ class FriendViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     
-
+    @IBAction func logout(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "viewController") as? ViewController
+        vc!.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
     
     var displayItem: [Users] = [
         .init(name: "Nikita", avatar: UIImageView(image: UIImage(imageLiteralResourceName: "Я")), lastname: "Troyan")
@@ -22,27 +26,11 @@ class FriendViewController: UIViewController {
         .init(avatar: UIImageView(image: UIImage(imageLiteralResourceName: "Я")))
         ]
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "logout"
-                {
-            if let vc = segue.destination as? ViewController
-                    {
-                        vc.modalPresentationStyle = .fullScreen
-                        present(vc, animated: true)
-                    }
-                }
-            }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(R.Cell.friendTableCell, forCellReuseIdentifier: R.Identifier.friendTableCell)
  
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
 
 }

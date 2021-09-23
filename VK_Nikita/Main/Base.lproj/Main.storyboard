@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIp-f0-WLQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19158" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIp-f0-WLQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19141"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,18 +12,19 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Irx-vb-Ogj">
+                                <rect key="frame" x="0.0" y="-129" width="414" height="1154"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzD-D8-bER">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Irx-vb-Ogj">
-                                        <rect key="frame" x="0.0" y="-300" width="414" height="1154"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dtU-pX-tuZ">
                                         <rect key="frame" x="147" y="270" width="120" height="264"/>
                                         <subviews>
@@ -76,19 +78,15 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="snU-3G-lBO" firstAttribute="leading" secondItem="hzD-D8-bER" secondAttribute="leading" constant="279" id="5k0-9n-YLn"/>
-                                    <constraint firstItem="Irx-vb-Ogj" firstAttribute="top" secondItem="hzD-D8-bER" secondAttribute="top" constant="-300" id="EsR-bU-fpr"/>
                                     <constraint firstAttribute="trailing" secondItem="snU-3G-lBO" secondAttribute="trailing" constant="82" id="Fkk-mh-Aaw"/>
                                     <constraint firstItem="dtU-pX-tuZ" firstAttribute="centerX" secondItem="hzD-D8-bER" secondAttribute="centerX" id="Fxq-3G-wFH"/>
                                     <constraint firstItem="dtU-pX-tuZ" firstAttribute="top" secondItem="snU-3G-lBO" secondAttribute="bottom" constant="60" id="RwG-sy-2qt"/>
-                                    <constraint firstItem="Irx-vb-Ogj" firstAttribute="leading" secondItem="hzD-D8-bER" secondAttribute="leading" id="T44-zJ-UYv"/>
                                     <constraint firstAttribute="bottom" secondItem="dtU-pX-tuZ" secondAttribute="bottom" constant="20" id="T9x-Ka-haz"/>
-                                    <constraint firstAttribute="trailing" secondItem="Irx-vb-Ogj" secondAttribute="trailing" id="au6-pe-pbr"/>
                                     <constraint firstItem="snU-3G-lBO" firstAttribute="top" secondItem="hzD-D8-bER" secondAttribute="top" constant="80" id="eFn-C7-whc"/>
                                     <constraint firstAttribute="trailing" secondItem="snU-3G-lBO" secondAttribute="trailing" constant="279" id="eN7-ql-VhS"/>
                                     <constraint firstItem="snU-3G-lBO" firstAttribute="top" secondItem="hzD-D8-bER" secondAttribute="top" constant="25" id="fvu-vP-etg"/>
                                     <constraint firstItem="dtU-pX-tuZ" firstAttribute="top" secondItem="snU-3G-lBO" secondAttribute="bottom" constant="59" id="pF5-5Y-w4B"/>
                                     <constraint firstItem="snU-3G-lBO" firstAttribute="leading" secondItem="hzD-D8-bER" secondAttribute="leading" constant="82" id="qXg-w7-uvN"/>
-                                    <constraint firstAttribute="bottom" secondItem="Irx-vb-Ogj" secondAttribute="bottom" constant="-300" id="x0D-PM-d3o"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">

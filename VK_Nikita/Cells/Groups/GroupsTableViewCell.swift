@@ -9,13 +9,9 @@ import UIKit
 
 class GroupsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var name: UILabel!
-    
     @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var labelName: UILabel!
     
-    func configure (_ userInfo:Groups) {
-        self.avatar = userInfo.image
-        self.name.text = userInfo.name
-    }
+
     
 }

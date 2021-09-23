@@ -8,6 +8,12 @@
 import UIKit
 
 class test: UIImageView {
+    
+    @IBInspectable var radius: CGFloat = 20 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -15,6 +21,7 @@ class test: UIImageView {
     }
     
     private func addCorner () {
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = radius
+        self.layer.masksToBounds = true
     }
 }

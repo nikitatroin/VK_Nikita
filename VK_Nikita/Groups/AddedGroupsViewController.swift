@@ -9,31 +9,32 @@ import UIKit
 
 class AddedGroupsViewController: UIViewController {
     
-     let tableView:UITableView = {
-        let table = UITableView()
-        table.register(R.Cell.groupTableCell, forCellReuseIdentifier: R.Identifier.groupsTableCell)
-        return table
-    }()
+    @IBOutlet weak var tableVIew: UITableView!
     
-    var displayItem: [Groups] = []
+    @IBAction func segua (_ segua:UIStoryboardSegue) {
+        if segua.identifier == "addGroup" {
+            let vc = segua.source as! AllGroupsViewController
+            if let indexPath = vc.tableVIew.indexPathForSelectedRow?.row {
+                let group = vc.displayItem[indexPath]
+                if !displayItem.contains(where: { _ in
+                    guard displayItem[indexPath].image == group.image && displayItem[indexPath].name == group.name else {return false}
+                    return true
+                }) {
+                displayItem.append(group)
+                }
+                tableVIew.reloadData()
+            }
+        }
+        
+    }
+    
+    var displayItem = [Groups]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.isEditing = true
+        self.tableVIew.register(R.Cell.groupTableCell, forCellReuseIdentifier: R.Identifier.groupsTableCell)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.tableView.frame = view.bounds
-    }
 }
 
 extension AddedGroupsViewController: UITableViewDataSource {
@@ -48,20 +49,17 @@ extension AddedGroupsViewController: UITableViewDataSource {
 
 extension AddedGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    (cell as? GroupsTableViewCell)?.avatar = displayItem[indexPath.row].image
-
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        print(displayItem[indexPath.row])
+        (cell as? GroupsTableViewCell)?.avatar = displayItem[indexPath.row].image
+        (cell as? GroupsTableViewCell)?.labelName.text = displayItem[indexPath.row].name
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             displayItem.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
         }
-        tableView.deleteRows(at: [indexPath], with: .fade)
     }
-    
+
 }
+    

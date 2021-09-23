@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self,
                                                       action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        self.tabBarController?.viewControllers = []
     }
     
     

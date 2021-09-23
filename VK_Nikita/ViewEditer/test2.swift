@@ -17,8 +17,8 @@ class test2: UIView {
         self.layer.cornerRadius = 16
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.5
-        self.layer.shadowRadius = 8
-        self.layer.shadowOffset = .init(width: 5, height: -2)
+        self.layer.shadowRadius = 2
+        self.layer.shadowOffset = .init(width: 2, height: 1)
     }
 
 }

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="friendTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupsTableCell" rowHeight="50" id="xnE-1Z-lU3" customClass="GroupsTableViewCell" customModule="VK_Nikita" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupsTableCell" rowHeight="50" id="xnE-1Z-lU3" customClass="GroupsTableViewCell" customModule="VK_Nikita" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xnE-1Z-lU3" id="zyg-gn-sZ3">
@@ -17,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Машины" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQB-hi-QV8">
-                        <rect key="frame" x="5" y="15" width="69" height="20"/>
+                        <rect key="frame" x="15" y="15" width="69" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -31,7 +32,7 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="RQB-hi-QV8" firstAttribute="leading" secondItem="zyg-gn-sZ3" secondAttribute="leading" constant="5" id="16b-Ci-fBa"/>
+                    <constraint firstItem="RQB-hi-QV8" firstAttribute="leading" secondItem="zyg-gn-sZ3" secondAttribute="leading" constant="15" id="16b-Ci-fBa"/>
                     <constraint firstItem="RQB-hi-QV8" firstAttribute="top" secondItem="zyg-gn-sZ3" secondAttribute="top" constant="15" id="66Q-lj-AZy"/>
                     <constraint firstItem="GfG-GS-75J" firstAttribute="top" secondItem="zyg-gn-sZ3" secondAttribute="top" constant="5" id="K2y-VD-8fN"/>
                     <constraint firstAttribute="trailing" secondItem="GfG-GS-75J" secondAttribute="trailing" constant="15" id="Kj0-CL-TQn"/>
@@ -42,7 +43,7 @@
             <viewLayoutGuide key="safeArea" id="K1T-WB-3fm"/>
             <connections>
                 <outlet property="avatar" destination="GfG-GS-75J" id="l4z-hC-ydi"/>
-                <outlet property="name" destination="RQB-hi-QV8" id="ipg-J4-6JJ"/>
+                <outlet property="labelName" destination="RQB-hi-QV8" id="cod-1G-RnC"/>
             </connections>
             <point key="canvasLocation" x="79.710144927536234" y="61.607142857142854"/>
         </tableViewCell>
