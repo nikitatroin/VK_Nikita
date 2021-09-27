@@ -13,7 +13,7 @@ class AllGroupsViewController: UIViewController {
     @IBOutlet weak var tableVIew: UITableView!
     
      var displayItem: [Groups] = [
-        .init(name: "Cars", image: UIImageView(image: UIImage(imageLiteralResourceName: "Машина")))
+        .init(name: "Cars", image: UIImage(imageLiteralResourceName: "Машина"))
         ]
     
     override func viewDidLoad() {
@@ -29,12 +29,9 @@ extension AllGroupsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.Identifier.groupsTableCell, for: indexPath) as! GroupsTVC
-        
-        let name = displayItem[indexPath.row].name
-       // let avatar = displayItem[indexPath.row].image
-        
-        cell.avatar = displayItem[indexPath.row].image
-        cell.name.text = name
+
+        cell.avatar.image = displayItem[indexPath.row].image
+        cell.name.text = displayItem[indexPath.row].name
         
         return cell
     }

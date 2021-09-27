@@ -11,7 +11,7 @@ class FriendsCollectionViewCell: UICollectionViewCell {
     
     private var a = 0
 
-    @IBOutlet weak var avatar: test!
+    @IBOutlet weak var avatar: UIImageView!
     
     @IBOutlet weak var heart: UIImageView! 
        
@@ -29,8 +29,8 @@ class FriendsCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func configure (avatar:UIImageView) {
-        self.avatar = avatar as? test
+    func configure (avatar:UIImage) {
+        self.avatar.image = avatar
     }
     
 

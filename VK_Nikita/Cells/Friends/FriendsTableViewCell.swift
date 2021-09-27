@@ -9,18 +9,30 @@ import UIKit
 
 class FriendsTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var test2: test2!
+    @IBOutlet private weak var test2: test2!
     
-    @IBOutlet private weak var name: UILabel!
+    @IBOutlet  weak var name: UILabel!
     
-    @IBOutlet private weak var lastname: UILabel!
+    @IBOutlet  weak var lastname: UILabel!
     
-    @IBOutlet weak var avatar: test!
+    @IBOutlet  weak var avatar: UIImageView!
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        self.name = nil
+//        self.avatar = nil
+//        self.lastname = nil
+//        self.test2 = nil
+//    }
     
     func configure (userInfo:Users) {
         self.name.text = userInfo.name
         self.lastname.text = userInfo.lastname
-        self.avatar = userInfo.avatar as? test
+        self.avatar.image = userInfo.avatar
     }
     
 }

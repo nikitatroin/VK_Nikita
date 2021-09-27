@@ -8,18 +8,14 @@
 import UIKit
 
 struct Users {
+    
     var name:String
     var lastname:String
-    var avatar: UIImageView
+    var avatar: UIImage
     
-    init(name:String, avatar:UIImageView, lastname:String) {
-        self.avatar = avatar
-        self.name = name
-        self.lastname = lastname
     }
-}
 
 struct UsersAvatar {
-    var avatar: UIImageView
+    var avatar: UIImage
     
 }

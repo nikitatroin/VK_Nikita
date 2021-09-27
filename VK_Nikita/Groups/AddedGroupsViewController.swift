@@ -16,12 +16,12 @@ class AddedGroupsViewController: UIViewController {
             let vc = segua.source as! AllGroupsViewController
             if let indexPath = vc.tableVIew.indexPathForSelectedRow?.row {
                 let group = vc.displayItem[indexPath]
-                if !displayItem.contains(where: { _ in
-                    guard displayItem[indexPath].image == group.image && displayItem[indexPath].name == group.name else {return false}
-                    return true
-                }) {
-                displayItem.append(group)
-                }
+//                let name = vc.displayItem[indexPath].name
+//                let image = vc.displayItem[indexPath].image
+ //               if displayItem[indexPath].image == image && displayItem[indexPath].name == name
+//                {
+                 displayItem.append(group)
+//                }
                 tableVIew.reloadData()
             }
         }
@@ -49,7 +49,7 @@ extension AddedGroupsViewController: UITableViewDataSource {
 
 extension AddedGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as? GroupsTableViewCell)?.avatar = displayItem[indexPath.row].image
+        (cell as? GroupsTableViewCell)?.avatar.image = displayItem[indexPath.row].image
         (cell as? GroupsTableViewCell)?.labelName.text = displayItem[indexPath.row].name
     }
     

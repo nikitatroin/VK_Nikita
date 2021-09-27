@@ -9,5 +9,5 @@ import UIKit
 
 struct Groups {
     var name: String
-    var image: UIImageView
+    var image: UIImage
 }

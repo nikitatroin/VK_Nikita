@@ -106,7 +106,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Машина" translatesAutoresizingMaskIntoConstraints="NO" id="2LS-Fn-g9U">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2LS-Fn-g9U">
                                                     <rect key="frame" x="324" y="10" width="70" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="F5V-lx-cML"/>
@@ -159,7 +159,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Машина" width="750" height="562"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

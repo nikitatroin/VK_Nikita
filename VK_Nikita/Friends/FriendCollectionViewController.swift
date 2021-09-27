@@ -11,7 +11,7 @@ class FriendCollectionViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var avatar = UIImageView()
+    var avatar = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
