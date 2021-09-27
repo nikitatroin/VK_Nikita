@@ -15,6 +15,8 @@ class TabBarViewController: UITabBarController {
         self.viewControllers![0].tabBarItem.image = UIImage(systemName: "person.fill")
         self.viewControllers![1].tabBarItem.title = "Groups"
         self.viewControllers![1].tabBarItem.image = UIImage(systemName: "person.3.fill")
+        self.viewControllers![2].tabBarItem.title = "News"
+        self.viewControllers![2].tabBarItem.image = UIImage(systemName: "newspaper.fill")
     }
     
 

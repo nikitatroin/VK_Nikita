@@ -37,6 +37,8 @@
 		1F4C83FC26E50AC900617605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4C83FA26E50AC900617605 /* Main.storyboard */; };
 		1F4C83FF26E50AC900617605 /* VK_Nikita.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C83FD26E50AC900617605 /* VK_Nikita.xcdatamodeld */; };
 		1F4C840426E50ACE00617605 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4C840226E50ACE00617605 /* LaunchScreen.storyboard */; };
+		1F5286D82702187800BA8FAC /* NewsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F5286D72702187800BA8FAC /* NewsVC.storyboard */; };
+		1F5286DA270218A200BA8FAC /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5286D9270218A200BA8FAC /* NewsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		1F4C83FE26E50AC900617605 /* VK_Nikita.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VK_Nikita.xcdatamodel; sourceTree = "<group>"; };
 		1F4C840326E50ACE00617605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F4C840526E50ACE00617605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F5286D72702187800BA8FAC /* NewsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsVC.storyboard; sourceTree = "<group>"; };
+		1F5286D9270218A200BA8FAC /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +231,7 @@
 		1F4C83F326E50AC900617605 /* VK_Nikita */ = {
 			isa = PBXGroup;
 			children = (
+				1F5286D62702186300BA8FAC /* News */,
 				1F19251026EF7732006EB5D6 /* Main */,
 				1F19252126EF7BF4006EB5D6 /* Friends */,
 				1F19254326EF7E99006EB5D6 /* Groups */,
@@ -242,6 +247,15 @@
 				1F4C840526E50ACE00617605 /* Info.plist */,
 			);
 			path = VK_Nikita;
+			sourceTree = "<group>";
+		};
+		1F5286D62702186300BA8FAC /* News */ = {
+			isa = PBXGroup;
+			children = (
+				1F5286D72702187800BA8FAC /* NewsVC.storyboard */,
+				1F5286D9270218A200BA8FAC /* NewsVC.swift */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +319,7 @@
 				1F19251E26EF7B8D006EB5D6 /* Tabbar.storyboard in Resources */,
 				1F19252326EF7C24006EB5D6 /* Friends.storyboard in Resources */,
 				1F19254226EF7E86006EB5D6 /* GroupsTableViewCell.xib in Resources */,
+				1F5286D82702187800BA8FAC /* NewsVC.storyboard in Resources */,
 				1F4C840426E50ACE00617605 /* LaunchScreen.storyboard in Resources */,
 				1F19254526EF7ECB006EB5D6 /* Groups.storyboard in Resources */,
 				1F4C83FC26E50AC900617605 /* Main.storyboard in Resources */,
@@ -325,6 +340,7 @@
 				1F19252726EF7D38006EB5D6 /* FriendCollectionViewController.swift in Sources */,
 				1F1F4FE926F8FD19001EEEEA /* NamePicker.swift in Sources */,
 				1F19252F26EF7DA1006EB5D6 /* FriendsTableViewCell.swift in Sources */,
+				1F5286DA270218A200BA8FAC /* NewsVC.swift in Sources */,
 				1F19252526EF7D0C006EB5D6 /* FriendViewController.swift in Sources */,
 				1F4C83F526E50AC900617605 /* AppDelegate.swift in Sources */,
 				1F4C83FF26E50AC900617605 /* VK_Nikita.xcdatamodeld in Sources */,
