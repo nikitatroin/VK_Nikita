@@ -23,24 +23,13 @@ class NewsCell: UICollectionViewCell {
         self.addSubview(nameLabel)
         self.addSubview(profileImageView)
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[v0]-8-[v1]|", options:NSLayoutConstraint.FormatOptions(rawValue: 0) , metrics: nil,
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[v0(44)]-8-[v1]", options:NSLayoutConstraint.FormatOptions(rawValue: 0) , metrics: nil,
                                                       views: ["v0":profileImageView,
                                                               "v1":nameLabel,]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["v0":nameLabel]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["v0":nameLabel]))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["v0":profileImageView]))
-        
-//        let views = ["v0": nameLabel]
-//            let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
-//            let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
-//            let horizontalConstraint = NSLayoutConstraint(item: nameLabel, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: -135)
-//            let verticalConstraint = NSLayoutConstraint(item: nameLabel, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0)
-//
-//            self.addConstraints(widthConstraints)
-//            self.addConstraints(heightConstraints)
-//            self.addConstraints([horizontalConstraint, verticalConstraint])
-//
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0(44)]", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: ["v0":profileImageView]))
         
     }
     
@@ -61,4 +50,10 @@ class NewsCell: UICollectionViewCell {
         return lable
     }()
     
+}
+
+extension UIView {
+    func addConstWithFormat(format: String, view: UIView...) {
+        
+    }
 }
