@@ -39,6 +39,7 @@
 		1F4C840426E50ACE00617605 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4C840226E50ACE00617605 /* LaunchScreen.storyboard */; };
 		1F5286D82702187800BA8FAC /* NewsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F5286D72702187800BA8FAC /* NewsVC.storyboard */; };
 		1F5286DA270218A200BA8FAC /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5286D9270218A200BA8FAC /* NewsVC.swift */; };
+		1F5286DF27022A3900BA8FAC /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5286DE27022A3900BA8FAC /* NewsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		1F4C840526E50ACE00617605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F5286D72702187800BA8FAC /* NewsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsVC.storyboard; sourceTree = "<group>"; };
 		1F5286D9270218A200BA8FAC /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
+		1F5286DE27022A3900BA8FAC /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		1F19252826EF7D50006EB5D6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1F5286DB270229CF00BA8FAC /* News */,
 				1F19253126EF7DD9006EB5D6 /* Friends */,
 				1F19253626EF7E0E006EB5D6 /* Groups */,
 			);
@@ -258,6 +261,14 @@
 			path = News;
 			sourceTree = "<group>";
 		};
+		1F5286DB270229CF00BA8FAC /* News */ = {
+			isa = PBXGroup;
+			children = (
+				1F5286DE27022A3900BA8FAC /* NewsCell.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -339,6 +350,7 @@
 				1F1F4FE526F8E369001EEEEA /* test.swift in Sources */,
 				1F19252726EF7D38006EB5D6 /* FriendCollectionViewController.swift in Sources */,
 				1F1F4FE926F8FD19001EEEEA /* NamePicker.swift in Sources */,
+				1F5286DF27022A3900BA8FAC /* NewsCell.swift in Sources */,
 				1F19252F26EF7DA1006EB5D6 /* FriendsTableViewCell.swift in Sources */,
 				1F5286DA270218A200BA8FAC /* NewsVC.swift in Sources */,
 				1F19252526EF7D0C006EB5D6 /* FriendViewController.swift in Sources */,
@@ -504,6 +516,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23339VWS7W;
 				INFOPLIST_FILE = VK_Nikita/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,6 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23339VWS7W;
 				INFOPLIST_FILE = VK_Nikita/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

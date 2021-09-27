@@ -16,12 +16,18 @@ class AddedGroupsViewController: UIViewController {
             let vc = segua.source as! AllGroupsViewController
             if let indexPath = vc.tableVIew.indexPathForSelectedRow?.row {
                 let group = vc.displayItem[indexPath]
-//                let name = vc.displayItem[indexPath].name
-//                let image = vc.displayItem[indexPath].image
- //               if displayItem[indexPath].image == image && displayItem[indexPath].name == name
-//                {
-                 displayItem.append(group)
-//                }
+                if displayItem.isEmpty {
+                    displayItem.append(group)
+                    tableVIew.reloadData()
+                } else {
+                    let name = vc.displayItem[indexPath].name
+                    let image = vc.displayItem[indexPath].image
+                    if displayItem[indexPath].image == image && displayItem[indexPath].name == name {
+                      print(1)
+                    } else {
+                        displayItem.append(group)
+                    }
+                }
                 tableVIew.reloadData()
             }
         }

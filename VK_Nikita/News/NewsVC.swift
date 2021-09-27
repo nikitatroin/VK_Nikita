@@ -7,13 +7,20 @@
 
 import UIKit
 
-class NewsVC: UIViewController {
+class NewsVC: UIViewController, UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.title = "News"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.navigationBar.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        self.view.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        collectionView.alwaysBounceVertical = true
+        collectionView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        collectionView.register(NewsCell.self, forCellWithReuseIdentifier: R.Identifier.newsCell)
         
     }
 
@@ -21,26 +28,24 @@ class NewsVC: UIViewController {
 
 
 
-extension NewsVC: UITableViewDataSource {
+extension NewsVC: UICollectionViewDataSource {
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        3
     }
     
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        return UITableViewCell()
+        return collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.newsCell, for: indexPath) as! NewsCell
     }
     
-    
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
+    }
     
 }
 
 
-extension NewsVC: UITableViewDelegate {
+extension NewsVC: UICollectionViewDelegate {
     
 }
