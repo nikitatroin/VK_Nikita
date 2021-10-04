@@ -18,17 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-ic-JFm">
-                                <rect key="frame" x="0.0" y="160" width="384" height="702"/>
+                                <rect key="frame" x="0.0" y="160" width="414" height="702"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="WEu-sl-R2a"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="sVn-MW-6mb"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwg-OC-t1N" customClass="NamePicker" customModule="VK_Nikita" customModuleProvider="target">
-                                <rect key="frame" x="384" y="160" width="30" height="702"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="veh-eh-qTh">
                                 <rect key="frame" x="0.0" y="140" width="414" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -45,14 +41,10 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="LWq-ic-JFm" secondAttribute="bottom" id="6ed-t6-SYR"/>
                             <constraint firstItem="LWq-ic-JFm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6jj-5e-4Pr"/>
                             <constraint firstItem="LWq-ic-JFm" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="Fbv-iC-EYO"/>
-                            <constraint firstItem="iwg-OC-t1N" firstAttribute="top" secondItem="LWq-ic-JFm" secondAttribute="top" id="Uo2-z1-CE7"/>
-                            <constraint firstItem="iwg-OC-t1N" firstAttribute="leading" secondItem="LWq-ic-JFm" secondAttribute="trailing" id="V40-6Y-8w3"/>
                             <constraint firstItem="veh-eh-qTh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="140" id="VYm-al-NFE"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LWq-ic-JFm" secondAttribute="trailing" constant="30" id="a1T-rp-w4a"/>
-                            <constraint firstItem="iwg-OC-t1N" firstAttribute="bottom" secondItem="LWq-ic-JFm" secondAttribute="bottom" id="k8w-aS-oKh"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LWq-ic-JFm" secondAttribute="trailing" id="a1T-rp-w4a"/>
                             <constraint firstItem="veh-eh-qTh" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="onn-0J-637"/>
                             <constraint firstItem="veh-eh-qTh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="p1j-ek-EYt"/>
-                            <constraint firstItem="iwg-OC-t1N" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="uO7-XG-2ba"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Friends" id="De6-Ds-j9w">

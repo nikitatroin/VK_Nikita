@@ -7,11 +7,14 @@
 
 import UIKit
 class test2: UIView {
+    
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         addShadow()
     }
+    
+    
     
     private func addShadow () {
         self.layer.cornerRadius = 16

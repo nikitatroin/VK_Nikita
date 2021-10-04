@@ -7,11 +7,10 @@
 
 import UIKit
 
-struct Users {
-    
-    var name:String
-    var lastname:String
-    var avatar: UIImage
+struct User {
+    let userName: String
+    let userAvatar: UIImage
+    let userPhotos: [UIImage]
     
     }
 

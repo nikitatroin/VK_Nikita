@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19158" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIp-f0-WLQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIp-f0-WLQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19141"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -130,14 +131,18 @@
                     <navigationItem key="navigationItem" id="Rff-11-BSb"/>
                     <connections>
                         <outlet property="Gradient" destination="Irx-vb-Ogj" id="bWN-Np-Vv0"/>
+                        <outlet property="button" destination="Y9l-ge-Jt6" id="wgw-EM-RCM"/>
                         <outlet property="login" destination="2HA-GL-jQu" id="wG8-pa-7Qu"/>
+                        <outlet property="loginLabel" destination="muy-xQ-itS" id="fZx-bh-mQM"/>
+                        <outlet property="logo" destination="snU-3G-lBO" id="ycL-rH-xFz"/>
                         <outlet property="password" destination="Ghb-XE-fvL" id="az0-iY-P89"/>
+                        <outlet property="passwordLabel" destination="I7z-Qt-ugE" id="pz6-Ad-Kgz"/>
                         <outlet property="scrollView" destination="hzD-D8-bER" id="lAS-jL-Btw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="88.392857142857139"/>
+            <point key="canvasLocation" x="2099" y="88"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DgQ-kn-lVi">
@@ -150,16 +155,76 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="293-L5-ZAh"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="V3A-jI-WXU"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjR-bT-wuP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="88.392857142857139"/>
         </scene>
+        <!--View Controller2-->
+        <scene sceneID="XvD-kL-H9e">
+            <objects>
+                <viewController id="0wQ-Ve-sNW" customClass="ViewController2" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9xV-Lf-f4x">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkz-zL-Gw6">
+                                <rect key="frame" x="177" y="438" width="60" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MK3-Rd-bYR">
+                                        <rect key="frame" x="0.0" y="0.5" width="20" height="19"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="HcH-98-eyM"/>
+                                            <constraint firstAttribute="width" constant="20" id="rRs-wQ-472"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PfK-dP-nTV">
+                                        <rect key="frame" x="20" y="0.5" width="20" height="19"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="BWB-WC-KZH"/>
+                                            <constraint firstAttribute="height" constant="20" id="fkW-ac-5az"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FAh-eM-1uF">
+                                        <rect key="frame" x="40" y="0.5" width="20" height="19"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="PDD-dd-9YV"/>
+                                            <constraint firstAttribute="height" constant="20" id="tbZ-D1-5cH"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="paT-nS-KXy"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jkz-zL-Gw6" firstAttribute="centerX" secondItem="9xV-Lf-f4x" secondAttribute="centerX" id="W86-k1-8zK"/>
+                            <constraint firstItem="jkz-zL-Gw6" firstAttribute="centerY" secondItem="9xV-Lf-f4x" secondAttribute="centerY" id="X9H-d6-b8Q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uz4-cP-sA8"/>
+                    <connections>
+                        <outlet property="circle_1" destination="MK3-Rd-bYR" id="a4y-ab-nd9"/>
+                        <outlet property="circle_2" destination="PfK-dP-nTV" id="qZ8-f1-Tn9"/>
+                        <outlet property="circle_3" destination="FAh-eM-1uF" id="bd0-J5-haf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A2i-Gk-A4v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051" y="505"/>
+        </scene>
     </scenes>
     <resources>
         <image name="VK logo" width="2400" height="2398"/>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

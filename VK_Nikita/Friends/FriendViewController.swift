@@ -19,89 +19,140 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    var displayItem: [Users] = [
-                            Users(name: "Nikita",lastname: "Troyan",avatar: UIImage(named: "Я")!),
-                            Users(name: "Nikolai",lastname: "Ivanov",avatar: UIImage(named: "1")!),
-                            Users(name: "Daria",lastname: "Belikova",avatar: UIImage(named: "2")!),
-                            Users(name: "Kristina",lastname: "Tarasova",avatar: UIImage(named:"3")!)
-                            ]
-    
-    
-    var dict: [Character:[String]] = [:]
-    var dict2:[Character] = []
-    var dict3:[String] = []
-    var searchedArr:[String] = Array()
-    
-    
-    
-    private var userPhotos: [UsersAvatar] = [
-        .init(avatar: UIImage(imageLiteralResourceName: "Я"))
+    let friendsList = [
+            User(userName: "Коля",
+                 userAvatar: (UIImage(named: "1")!),
+                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!,
+                              UIImage(named: "4")!, UIImage(named: "5")!]),
+            
+            User(userName: "Ваня",
+                 userAvatar: (UIImage(named: "2")!),
+                 userPhotos: [UIImage(named: "5")!, UIImage(named: "3")!, UIImage(named: "2")!]),
+            
+            User(userName: "Василий",
+                 userAvatar: (UIImage(named: "3")!),
+                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!]),
+            
+            User(userName: "Анжелика",
+                 userAvatar: (UIImage(named: "4")!),
+                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]),
+            
+            User(userName: "Николай",
+                 userAvatar: (UIImage(named: "5")!),
+                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
+            
+            User(userName: "Аня",
+                 userAvatar: (UIImage(named: "2")!),
+                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
+            
+            User(userName: "Иван",
+                 userAvatar: (UIImage(named: "5")!),
+                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]),
+            
+            User(userName: "Ксения",
+                 userAvatar: (UIImage(named: "3")!),
+                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!,
+                              UIImage(named: "5")!]),
+            
+            User(userName: "Анна",
+                 userAvatar: (UIImage(named: "4")!),
+                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!,
+                              UIImage(named: "3")!, UIImage(named: "5")!])
         ]
+    
+    var letterAndNameList: [String:[String:UIImage]] = [:]
+    var alphabetNameLetters: [String] = []
+    
+    var searchArr: [String] = []
+    var findedArr: [String] = []
+    
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         self.tableView.register(R.Cell.friendTableCell, forCellReuseIdentifier: R.Identifier.friendTableCell)
         self.searchBar.delegate = self
-        createDict()
-        createDict2()
-        createDict3()
-        searchArr()
+        lettersAndName ()
+        onlyLatters ()
+        searchingArr ()
+        findingArr ()
+        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(FriendViewController.handleLongPress))
+        lpgr.minimumPressDuration = 1
+        tableView.addGestureRecognizer(lpgr)
         
     }
     
-    private func createDict (){
-        displayItem.forEach {
-            guard let letter = $0.name.first else {return}
-            if dict[letter] == nil {
-                dict[letter] = [$0.name]
+
+    private func lettersAndName (){
+        friendsList.forEach {
+            guard let letter = $0.userName.first else {return}
+            if letterAndNameList[String(letter)] == nil {
+                letterAndNameList[String(letter)] = [$0.userName: $0.userAvatar]
             } else {
-                dict[letter]?.append($0.name)
+                letterAndNameList.updateValue([$0.userName: $0.userAvatar], forKey: String(letter))
             }
         }
     }
     
-    private func createDict2 (){
-        displayItem.forEach {
-            dict2.append($0.name.first!)
+    private func onlyLatters (){
+        friendsList.forEach {
+            alphabetNameLetters.append(String($0.userName.first!))
         }
-        dict2 = dict2.sorted(by: <)
+        let set = Set(alphabetNameLetters)
+        alphabetNameLetters = Array(set)
+        alphabetNameLetters = alphabetNameLetters.sorted(by: <)
     }
     
-    private func createDict3 (){
-        displayItem.forEach {
-            dict3.append($0.name)
+    private func searchingArr (){
+        friendsList.forEach {
+            searchArr.append($0.userName)
         }
-        dict3 = dict3.sorted(by: <)
+        searchArr = searchArr.sorted(by: <)
     }
     
     
-    private func searchArr (){
-        displayItem.forEach {
-            searchedArr.append($0.name)
+    private func findingArr (){
+        friendsList.forEach {
+            findedArr.append($0.userName)
         }
     }
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.searchBar.resignFirstResponder()
-        self.searchedArr.removeAll()
-        searchArr()
+        self.searchArr.removeAll()
         return true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if searchBar.text?.count != 0 {
-            searchedArr.removeAll()
-            for str in dict3 {
+            searchArr.removeAll()
+            for str in findedArr {
                 let range = str.lowercased().range(of: textField.text!, options: .caseInsensitive, range: nil, locale: nil)
                 if range != nil {
-                    self.searchedArr.append(str)
+                    self.searchArr.append(str)
                 }
             }
         }
     tableView.reloadData()
     return true
+    }
+    // action для нажатия
+    @objc func handleLongPress (_ gesture:UILongPressGestureRecognizer) {
+        // если нажатие уже началось
+        if gesture.state != .began {
+            // если палец на tableView
+            let tapLocation = gesture.location(in: self.tableView)
+            // если палец на ячейки
+            if let tapIndexPath = self.tableView.indexPathForRow(at: tapLocation) {
+                // если это та самая ячейка
+                if let tappedCell = self.tableView.cellForRow(at: tapIndexPath) as? FriendsTableViewCell {
+                    //выполняем анимацию
+                    tappedCell.animate()
+                }
+            }
+        }
+        
     }
     
 
@@ -113,54 +164,59 @@ extension FriendViewController: UITableViewDataSource {
         if searchBar.text?.isEmpty == false {
             return 1
         }
-        return dict.keys.count
+        return alphabetNameLetters.count
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBar.text?.isEmpty == false {
-            return searchedArr.count
+            return searchArr.count
         }
-        return dict[dict2[section]]!.count
+        let letterKey = alphabetNameLetters[section]
+            if let elementsInSection = letterAndNameList[letterKey] {
+                return elementsInSection.count
+            } else {
+                return 0
+            }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: R.Identifier.friendTableCell, for: indexPath) as! FriendsTableViewCell
-    
-        if searchBar.text?.isEmpty != true {
-            cell.name.text = searchedArr[indexPath.row]
-        } else {
-            let letterKey = dict2[indexPath.section]
-            if let dictValue = dict[letterKey] {
-                
-            cell.name.text = dictValue[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: R.Identifier.friendTableCell, for: indexPath) as? FriendsTableViewCell {
+            if searchBar.text?.isEmpty != true {
+                cell.name.text = searchArr[indexPath.row]
+                cell.avatar.image = UIImage()
+                return cell
+            } else {
+                let letterKey = alphabetNameLetters[indexPath.section]
+                    if let dictValue = letterAndNameList[letterKey] {
+                        let lazyMapCollection = dictValue.keys
+                        let keysString = Array(lazyMapCollection.map { String($0) }).sorted(by: <)
+                        cell.name.text = keysString[indexPath.row]
+                        cell.avatar.image = dictValue[keysString[indexPath.row]]
+                    }
+                return cell
             }
-        
-//        cell.lastname.text = dictValue[indexPath.row].lastname
-//        cell.avatar = dictValue[indexPath.row].avatar
         }
-        
-        
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if searchBar.text?.isEmpty == false {
-            return "Found matches \(searchedArr.count)"
+            return "Found matches \(searchArr.count)"
         }
-        return String(dict2[section])
+        return String(alphabetNameLetters[section])
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         var indexTitleList = [String]()
-        for element in Set(dict2) {
+        for element in alphabetNameLetters {
             indexTitleList.append(String(element))
         }
         return indexTitleList
     }
     
     func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        guard let index = dict2.firstIndex(of: Character(title)) else { return -1 }
+        guard let index = alphabetNameLetters.firstIndex(of: title) else { return -1 }
         return index
     }
     
@@ -168,17 +224,16 @@ extension FriendViewController: UITableViewDataSource {
 
 extension FriendViewController: UITableViewDelegate {
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        (cell as? FriendsTableViewCell)?.configure(userInfo: displayItem[indexPath.row])
-//    }
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
-        vc?.avatar = displayItem[indexPath.row].avatar
+        let letterKey = alphabetNameLetters[indexPath.section]
+            if let dictValue = letterAndNameList[letterKey] {
+                let lazyMapCollection = dictValue.keys
+                let keysString = Array(lazyMapCollection.map { String($0) }).sorted(by: <)
+                vc?.avatar = dictValue[keysString[indexPath.row]]!
         self.navigationController?.pushViewController(vc!, animated: true)
-        
+            }
     }
     
 }
