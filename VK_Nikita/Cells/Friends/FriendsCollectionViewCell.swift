@@ -9,29 +9,29 @@ import UIKit
 
 class FriendsCollectionViewCell: UICollectionViewCell {
     
-    private var a = 0
-
-    @IBOutlet weak var avatar: UIImageView!
     
-    @IBOutlet weak var heart: UIImageView! 
-       
-    @IBOutlet weak var heartCount: UILabel!
-    
-    @IBOutlet weak var control1: UIControl!
-    
-    @IBAction func control(_ sender: Any) {
-        self.heart.image = UIImage(systemName: "heart.fill")
-        a += 1
-        if self.control1.isHighlighted == true {
-            control1.isHighlighted.toggle()
-            heartCount.text = "\(a)"
+    @IBOutlet weak var avatar: UIImageView! {
+        didSet {
+            avatar.clipsToBounds = true
+            avatar.contentMode = .scaleAspectFill
         }
-        
     }
     
-    func configure (avatar:UIImage) {
-        self.avatar.image = avatar
+    @IBOutlet weak var shadowView: UIView! {
+        didSet {
+            self.shadowView.layer.shadowOffset = .zero
+            self.shadowView.layer.shadowOpacity = 0.2
+            self.shadowView.layer.shadowRadius = 6
+            self.shadowView.backgroundColor = .clear
+            self.shadowView.layer.masksToBounds = false
+        }
     }
-    
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.shadowView.layer.shadowPath = UIBezierPath(rect: avatar.frame).cgPath
+        self.avatar.layer.cornerRadius = 30
+            
+    }
 
 }

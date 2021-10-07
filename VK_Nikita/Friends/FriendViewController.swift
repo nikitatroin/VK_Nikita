@@ -9,6 +9,8 @@ import UIKit
 
 class FriendViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: Outlets
+    
     @IBOutlet weak var searchBar: UITextField!
     
     @IBOutlet private weak var tableView: UITableView!
@@ -19,6 +21,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
+// MARK: Constanst
     let friendsList = [
             User(userName: "Коля",
                  userAvatar: (UIImage(named: "1")!),
@@ -26,7 +29,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
                               UIImage(named: "4")!, UIImage(named: "5")!]),
             
             User(userName: "Ваня",
-                 userAvatar: (UIImage(named: "2")!),
+                 userAvatar: (UIImage(named: "Я")!),
                  userPhotos: [UIImage(named: "5")!, UIImage(named: "3")!, UIImage(named: "2")!]),
             
             User(userName: "Василий",
@@ -42,7 +45,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
                  userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
             
             User(userName: "Аня",
-                 userAvatar: (UIImage(named: "2")!),
+                 userAvatar: (UIImage(named: "Я")!),
                  userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
             
             User(userName: "Иван",
@@ -60,48 +63,43 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
                               UIImage(named: "3")!, UIImage(named: "5")!])
         ]
     
-    var letterAndNameList: [String:[String:UIImage]] = [:]
-    var alphabetNameLetters: [String] = []
     
+    var nameList: [String] = []
+    var lettersList: [String] = []
     var searchArr: [String] = []
     var findedArr: [String] = []
     
 
     
+// MARK: ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(R.Cell.friendTableCell, forCellReuseIdentifier: R.Identifier.friendTableCell)
         self.searchBar.delegate = self
-        lettersAndName ()
-        onlyLatters ()
+        makeNamesList()
+        makeLettersList()
         searchingArr ()
         findingArr ()
-        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(FriendViewController.handleLongPress))
-        lpgr.minimumPressDuration = 1
-        tableView.addGestureRecognizer(lpgr)
-        
+       
     }
     
-
-    private func lettersAndName (){
+// MARK: Funcs
+    
+    private func makeNamesList (){
         friendsList.forEach {
-            guard let letter = $0.userName.first else {return}
-            if letterAndNameList[String(letter)] == nil {
-                letterAndNameList[String(letter)] = [$0.userName: $0.userAvatar]
-            } else {
-                letterAndNameList.updateValue([$0.userName: $0.userAvatar], forKey: String(letter))
-            }
+            nameList.append($0.userName)
+            nameList = nameList.sorted(by: <)
         }
     }
     
-    private func onlyLatters (){
+    private func makeLettersList(){
         friendsList.forEach {
-            alphabetNameLetters.append(String($0.userName.first!))
+            lettersList.append(String($0.userName.first!))
+            let letersSet = Set(lettersList)
+            lettersList = Array(letersSet)
+            lettersList = lettersList.sorted(by: <)
         }
-        let set = Set(alphabetNameLetters)
-        alphabetNameLetters = Array(set)
-        alphabetNameLetters = alphabetNameLetters.sorted(by: <)
     }
     
     private func searchingArr (){
@@ -115,8 +113,45 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     private func findingArr (){
         friendsList.forEach {
             findedArr.append($0.userName)
+            findedArr = findedArr.sorted(by: <)
         }
     }
+    
+    private func getNameForCell (_ indexPath: IndexPath) -> String {
+        //создаём пустой массив имён, которые будут содержаться в секции
+        var namesOfRows = [String]()
+        nameList.forEach {
+            //проходимся по всем именем в массиве имён
+            if lettersList[indexPath.section].contains($0.first!) {
+                //если имя содержит букву, которая указанна в определённой секции и буква имени совпадают, то добавляем это имя в массив
+                namesOfRows.append($0)
+            }
+        }
+        return namesOfRows[indexPath.row]
+    }
+    
+    private func getUserAvatarForCell (_ indexPath: IndexPath) -> UIImage? {
+        for friend in friendsList {
+            let namesRows = getNameForCell(indexPath)
+            if friend.userName.contains(namesRows) {
+                return friend.userAvatar
+            }
+        }
+        return nil
+    }
+    
+    
+    private func getPhotosFriend (_ indexPath: IndexPath) -> [UIImage?] {
+        var photos: [UIImage?] = []
+        for friend in friendsList{
+        let namesRows = getNameForCell(indexPath)
+            if friend.userName.contains(namesRows) {
+                photos.append(contentsOf: friend.userPhotos)
+            }
+        }
+        return photos
+    }
+    
     
     internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.searchBar.resignFirstResponder()
@@ -137,6 +172,8 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     tableView.reloadData()
     return true
     }
+    
+    
     // action для нажатия
     @objc func handleLongPress (_ gesture:UILongPressGestureRecognizer) {
         // если нажатие уже началось
@@ -152,11 +189,10 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-        
     }
     
-
 }
+// MARK: Extension
 
 extension FriendViewController: UITableViewDataSource {
     
@@ -164,20 +200,24 @@ extension FriendViewController: UITableViewDataSource {
         if searchBar.text?.isEmpty == false {
             return 1
         }
-        return alphabetNameLetters.count
+        return lettersList.count
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var countOfRow = 0
         if searchBar.text?.isEmpty == false {
             return searchArr.count
-        }
-        let letterKey = alphabetNameLetters[section]
-            if let elementsInSection = letterAndNameList[letterKey] {
-                return elementsInSection.count
-            } else {
-                return 0
+        } else {
+            nameList.forEach {
+                //обращаемся к массиву с буквами и проверяем
+                if lettersList[section].contains($0.first!) {
+                    countOfRow += 1
+                }
             }
+            return countOfRow
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -187,54 +227,90 @@ extension FriendViewController: UITableViewDataSource {
                 cell.avatar.image = UIImage()
                 return cell
             } else {
-                let letterKey = alphabetNameLetters[indexPath.section]
-                    if let dictValue = letterAndNameList[letterKey] {
-                        let lazyMapCollection = dictValue.keys
-                        let keysString = Array(lazyMapCollection.map { String($0) }).sorted(by: <)
-                        cell.name.text = keysString[indexPath.row]
-                        cell.avatar.image = dictValue[keysString[indexPath.row]]
+                let lpgr = UITapGestureRecognizer(target: self, action: #selector(FriendViewController.handleLongPress))
+                cell.avatar.isUserInteractionEnabled = true
+                cell.avatar.addGestureRecognizer(lpgr)
+                cell.shadowView.isUserInteractionEnabled = true
+                cell.name.text = getNameForCell(indexPath)
+                cell.avatar.image = getUserAvatarForCell(indexPath)
                     }
                 return cell
             }
-        }
         return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if searchBar.text?.isEmpty == false {
-            return "Found matches \(searchArr.count)"
         }
-        return String(alphabetNameLetters[section])
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = GradientView()
+        let label = UILabel(frame: CGRect(x: 8, y: 5, width: 20, height: 20))
+        label.textColor = UIColor.black.withAlphaComponent(0.5)
+        label.text = lettersList[section]
+        label.font = UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.heavy)
+        header.startColor = .white
+        header.endColor = .blue
+        header.startPoint = .init(x: 1 , y: 0)
+        header.endPoint = .init(x: 0 , y: 1)
+        header.startLocation = 0
+        header.endLocation = 1
+        header.addSubview(label)
+        
+        return header
     }
     
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        var indexTitleList = [String]()
-        for element in alphabetNameLetters {
-            indexTitleList.append(String(element))
-        }
-        return indexTitleList
+    // настройка высоты header для секций
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
     
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        guard let index = alphabetNameLetters.firstIndex(of: title) else { return -1 }
-        return index
-    }
+    
+    // настройка title на header в каждой секции
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if searchBar.text?.isEmpty == false {
+//            return "Founded matches \(searchArr.count)"
+//        }
+//        return lettersList[section]
+//    }
+    
+//    // боковая панель с буквами
+//    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+//        var indexTitleList = [String]()
+//        for element in lettersList {
+//            indexTitleList.append(element)
+//        }
+//        return indexTitleList
+//    }
+//    // переносит нас к букве секции
+//    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+//        guard let index = lettersList.firstIndex(of: title) else { return -1 }
+//        return index
+//    }
+    
     
 }
 
-extension FriendViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
-        let letterKey = alphabetNameLetters[indexPath.section]
-            if let dictValue = letterAndNameList[letterKey] {
-                let lazyMapCollection = dictValue.keys
-                let keysString = Array(lazyMapCollection.map { String($0) }).sorted(by: <)
-                vc?.avatar = dictValue[keysString[indexPath.row]]!
-        self.navigationController?.pushViewController(vc!, animated: true)
-            }
+    extension FriendViewController: UITableViewDelegate {
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            tableView.deselectRow(at: indexPath, animated: true)
+            let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
+                    vc?.avatar = getPhotosFriend(indexPath)
+                    self.navigationController?.pushViewController(vc!, animated: true)
+                }
+        
+        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            let view = (cell as? FriendsTableViewCell)!.avatar
+            let shadow = (cell as? FriendsTableViewCell)!.shadowView
+            view?.contentMode = .scaleAspectFill
+            view?.layer.masksToBounds = true
+            view?.layer.cornerRadius = 8
+            shadow?.backgroundColor = .clear
+            shadow?.layer.masksToBounds = false
+            shadow?.layer.shadowColor = UIColor.black.cgColor
+            shadow?.layer.shadowRadius = 1.5
+            shadow?.layer.shadowOpacity = 0.5
+            shadow?.layer.shadowOffset = .init(width: -5, height: 5)
+            let radius = view!.layer.cornerRadius
+            shadow?.layer.shadowPath = UIBezierPath(roundedRect: view!.bounds, cornerRadius: radius).cgPath
+            
+        }
     }
-    
-}
 

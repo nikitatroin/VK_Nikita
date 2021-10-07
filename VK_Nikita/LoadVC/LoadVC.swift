@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController2: UIViewController {
+class LoadVC: UIViewController {
     
     @IBOutlet weak var circle_1: UIImageView!
     @IBOutlet weak var circle_2: UIImageView!
@@ -18,6 +18,8 @@ class ViewController2: UIViewController {
         circleAnimation1()
         circleAnimation2()
         circleAnimation3()
+        
+        
 
     }
     

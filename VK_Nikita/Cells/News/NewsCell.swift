@@ -126,7 +126,7 @@ class NewsCell: UICollectionViewCell {
         button.setTitle(title, for: .normal)
         button.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 163/255, alpha: 1), for: .normal)
         button.setImage(UIImage(systemName: view), for: .normal)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        //button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         return button
     }

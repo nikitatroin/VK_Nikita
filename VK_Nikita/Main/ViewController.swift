@@ -37,7 +37,6 @@ class ViewController: UIViewController {
         animateLabelAppearing()
         animateLogoAppearing()
         animateFieldAppearing()
-        addGradient()
         let hideKeyboardGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(hideKeyboard))
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
@@ -91,7 +90,8 @@ class ViewController: UIViewController {
     
     private func showAlertMSG(){
         let alertController = UIAlertController(title: "Ошибка",
-                                                message: "Пароль или логин введены неверно",
+                                                message:
+                                                    "Пароль или логин введены неверно",
                                                 preferredStyle: .alert)
         
         let alertAction = UIAlertAction(title: "Ну понятно",

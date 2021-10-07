@@ -32,10 +32,13 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8v1-ba-MAQ" customClass="TabBarViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="un8-HI-Z8c"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hcD-r5-wy0">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <tabBarAppearance key="standardAppearance"/>
                     </tabBar>
                     <connections>
                         <segue destination="wXO-B1-N18" kind="relationship" relationship="viewControllers" id="P25-RO-VB9"/>

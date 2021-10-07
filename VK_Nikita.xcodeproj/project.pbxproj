@@ -26,9 +26,12 @@
 		1F19254926EF7F47006EB5D6 /* AllGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F19254826EF7F47006EB5D6 /* AllGroupsViewController.swift */; };
 		1F19254F26F0B4EF006EB5D6 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F19254E26F0B4EF006EB5D6 /* TabBarViewController.swift */; };
 		1F19255326F0CC2E006EB5D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F19255226F0CC2E006EB5D6 /* Assets.xcassets */; };
-		1F1F4FE326F8D038001EEEEA /* UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1F4FE226F8D038001EEEEA /* UIControl.swift */; };
 		1F1F4FEB26F8FDC9001EEEEA /* Letters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1F4FEA26F8FDC9001EEEEA /* Letters.swift */; };
-		1F4763192709AB680090B804 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4763182709AB680090B804 /* ViewController2.swift */; };
+		1F4763192709AB680090B804 /* LoadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4763182709AB680090B804 /* LoadVC.swift */; };
+		1F47631E270CB1780090B804 /* LoadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F47631D270CB1780090B804 /* LoadStoryboard.storyboard */; };
+		1F476322270CB4E90090B804 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F476321270CB4E80090B804 /* GradientView.swift */; };
+		1F476324270CE6820090B804 /* CollectionViewCustonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F476323270CE6820090B804 /* CollectionViewCustonLayout.swift */; };
+		1F476326270DDBE30090B804 /* HeartAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F476325270DDBE20090B804 /* HeartAnimation.swift */; };
 		1F4C83F526E50AC900617605 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C83F426E50AC900617605 /* AppDelegate.swift */; };
 		1F4C83F726E50AC900617605 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C83F626E50AC900617605 /* SceneDelegate.swift */; };
 		1F4C83F926E50AC900617605 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C83F826E50AC900617605 /* ViewController.swift */; };
@@ -60,9 +63,12 @@
 		1F19254826EF7F47006EB5D6 /* AllGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsViewController.swift; sourceTree = "<group>"; };
 		1F19254E26F0B4EF006EB5D6 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		1F19255226F0CC2E006EB5D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1F1F4FE226F8D038001EEEEA /* UIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControl.swift; sourceTree = "<group>"; };
 		1F1F4FEA26F8FDC9001EEEEA /* Letters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letters.swift; sourceTree = "<group>"; };
-		1F4763182709AB680090B804 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		1F4763182709AB680090B804 /* LoadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadVC.swift; sourceTree = "<group>"; };
+		1F47631D270CB1780090B804 /* LoadStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoadStoryboard.storyboard; sourceTree = "<group>"; };
+		1F476321270CB4E80090B804 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		1F476323270CE6820090B804 /* CollectionViewCustonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCustonLayout.swift; sourceTree = "<group>"; };
+		1F476325270DDBE20090B804 /* HeartAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartAnimation.swift; sourceTree = "<group>"; };
 		1F4C83F126E50AC900617605 /* VK_Nikita.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_Nikita.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F4C83F426E50AC900617605 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F4C83F626E50AC900617605 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +98,6 @@
 			children = (
 				1F4C83FA26E50AC900617605 /* Main.storyboard */,
 				1F4C83F826E50AC900617605 /* ViewController.swift */,
-				1F4763182709AB680090B804 /* ViewController2.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 				1F19252226EF7C24006EB5D6 /* Friends.storyboard */,
 				1F19252426EF7D0C006EB5D6 /* FriendViewController.swift */,
 				1F19252626EF7D38006EB5D6 /* FriendCollectionViewController.swift */,
+				1F476323270CE6820090B804 /* CollectionViewCustonLayout.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -194,12 +200,22 @@
 			path = Groups;
 			sourceTree = "<group>";
 		};
-		1F1F4FEC26F91C6C001EEEEA /* UIControls */ = {
+		1F47631C270CB15D0090B804 /* LoadVC */ = {
 			isa = PBXGroup;
 			children = (
-				1F1F4FE226F8D038001EEEEA /* UIControl.swift */,
+				1F47631D270CB1780090B804 /* LoadStoryboard.storyboard */,
+				1F4763182709AB680090B804 /* LoadVC.swift */,
 			);
-			path = UIControls;
+			path = LoadVC;
+			sourceTree = "<group>";
+		};
+		1F476320270CB4C90090B804 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1F476321270CB4E80090B804 /* GradientView.swift */,
+				1F476325270DDBE20090B804 /* HeartAnimation.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1F4C83E826E50AC900617605 = {
@@ -221,16 +237,17 @@
 		1F4C83F326E50AC900617605 /* VK_Nikita */ = {
 			isa = PBXGroup;
 			children = (
+				1F47631C270CB15D0090B804 /* LoadVC */,
 				1F19251026EF7732006EB5D6 /* Main */,
 				1F19252126EF7BF4006EB5D6 /* Friends */,
 				1F19254326EF7E99006EB5D6 /* Groups */,
 				1F19251C26EF7B67006EB5D6 /* Tabbar */,
 				1F5286D62702186300BA8FAC /* News */,
 				1F19252826EF7D50006EB5D6 /* Cells */,
-				1F1F4FEC26F91C6C001EEEEA /* UIControls */,
 				1F4C83F226E50AC900617605 /* Products */,
 				1F19251126EF7754006EB5D6 /* Delegate */,
 				1F19251226EF7782006EB5D6 /* R */,
+				1F476320270CB4C90090B804 /* Views */,
 				1F19251526EF7816006EB5D6 /* Model */,
 				1F19251B26EF78C5006EB5D6 /* Other */,
 				1F4C840526E50ACE00617605 /* Info.plist */,
@@ -271,6 +288,8 @@
 			dependencies = (
 			);
 			name = VK_Nikita;
+			packageProductDependencies = (
+			);
 			productName = VK_Nikita;
 			productReference = 1F4C83F126E50AC900617605 /* VK_Nikita.app */;
 			productType = "com.apple.product-type.application";
@@ -298,6 +317,8 @@
 				Base,
 			);
 			mainGroup = 1F4C83E826E50AC900617605;
+			packageReferences = (
+			);
 			productRefGroup = 1F4C83F226E50AC900617605 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -322,6 +343,7 @@
 				1F4C83FC26E50AC900617605 /* Main.storyboard in Resources */,
 				1F19255326F0CC2E006EB5D6 /* Assets.xcassets in Resources */,
 				1F19253026EF7DA1006EB5D6 /* FriendsTableViewCell.xib in Resources */,
+				1F47631E270CB1780090B804 /* LoadStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,11 +365,13 @@
 				1F19254126EF7E86006EB5D6 /* GroupsTableViewCell.swift in Sources */,
 				1F19251426EF779C006EB5D6 /* R.swift in Sources */,
 				1F19251726EF782E006EB5D6 /* Users.swift in Sources */,
+				1F476322270CB4E90090B804 /* GradientView.swift in Sources */,
+				1F476324270CE6820090B804 /* CollectionViewCustonLayout.swift in Sources */,
 				1F1F4FEB26F8FDC9001EEEEA /* Letters.swift in Sources */,
 				1F054ADE26FC9C7000E9CFC6 /* GroupsTVC.swift in Sources */,
-				1F1F4FE326F8D038001EEEEA /* UIControl.swift in Sources */,
-				1F4763192709AB680090B804 /* ViewController2.swift in Sources */,
+				1F4763192709AB680090B804 /* LoadVC.swift in Sources */,
 				1F4C83F726E50AC900617605 /* SceneDelegate.swift in Sources */,
+				1F476326270DDBE30090B804 /* HeartAnimation.swift in Sources */,
 				1F19254926EF7F47006EB5D6 /* AllGroupsViewController.swift in Sources */,
 				1F19254726EF7F33006EB5D6 /* AddedGroupsViewController.swift in Sources */,
 				1F19251926EF7840006EB5D6 /* Groups.swift in Sources */,
@@ -429,7 +453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -484,7 +508,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

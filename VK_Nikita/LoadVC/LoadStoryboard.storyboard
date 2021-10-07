@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="agt-J4-QbI">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LoadVC-->
+        <scene sceneID="bdw-DI-pyh">
+            <objects>
+                <viewController id="agt-J4-QbI" customClass="LoadVC" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PpG-dh-KJv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-rH-wij">
+                                <rect key="frame" x="177" y="438" width="60" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xBn-H0-jvb">
+                                        <rect key="frame" x="0.0" y="0.5" width="20" height="19"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="RZR-VY-CVj"/>
+                                            <constraint firstAttribute="width" constant="20" id="oY3-Ld-aFE"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FMZ-c0-AjX">
+                                        <rect key="frame" x="20" y="0.5" width="20" height="19"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="3Fd-Ao-WOv"/>
+                                            <constraint firstAttribute="height" constant="20" id="XgX-jg-QLr"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rfN-Ty-5WT">
+                                        <rect key="frame" x="40" y="0.5" width="20" height="19"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="MgS-5T-zYE"/>
+                                            <constraint firstAttribute="width" constant="20" id="cLd-1q-2v0"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vIJ-oQ-9x6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="NbQ-rH-wij" firstAttribute="centerX" secondItem="PpG-dh-KJv" secondAttribute="centerX" id="6Se-14-lOS"/>
+                            <constraint firstItem="NbQ-rH-wij" firstAttribute="centerY" secondItem="PpG-dh-KJv" secondAttribute="centerY" id="th9-hU-Q4M"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UhY-P2-fyV"/>
+                    <connections>
+                        <outlet property="circle_1" destination="xBn-H0-jvb" id="ZIb-dE-ftk"/>
+                        <outlet property="circle_2" destination="FMZ-c0-AjX" id="JZg-GP-Sx8"/>
+                        <outlet property="circle_3" destination="rfN-Ty-5WT" id="ywl-KR-liI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tla-4v-uJ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051" y="505"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

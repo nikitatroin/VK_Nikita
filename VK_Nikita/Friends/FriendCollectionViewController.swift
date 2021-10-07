@@ -11,11 +11,13 @@ class FriendCollectionViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var avatar = UIImage()
+     var avatar:[UIImage?] = []
+    private var layout = CollectionViewCustomLayout()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(R.Cell.friendCollectionCell, forCellWithReuseIdentifier: R.Identifier.friendCollectionCell)
+        configureCollectionView()
         
     }
     
@@ -24,37 +26,30 @@ class FriendCollectionViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
     }
+    
+    private func configureCollectionView () {
+        self.collectionView.collectionViewLayout = self.layout
+    }
 }
 
-extension FriendCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.friendCollectionCell, for: indexPath)
-
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    extension FriendCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
         
-        let contentSize = self.collectionView.frame.width
-        let rowHeight: CGFloat = 300
-        let rowWidht = contentSize
-    
-        return .init(width: rowWidht, height: rowHeight)
-    }
-    
-    
-}
-
-extension FriendCollectionViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        (cell as? FriendsCollectionViewCell)?.configure(avatar: self.avatar)
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            avatar.count
+        }
         
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.friendCollectionCell, for: indexPath) as! FriendsCollectionViewCell
+            
+            cell.avatar.image = avatar[indexPath.row]
+            
+            return cell
+
+        }
+        
+        
+        func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+            
+        }
     }
-    
-    
-    
-}
+

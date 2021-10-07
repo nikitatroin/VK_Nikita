@@ -13,6 +13,7 @@ enum R {
         static let Tabbar:UIStoryboard = .init(name: "Tabbar", bundle: nil)
         static let Friends:UIStoryboard = .init(name: "Friends", bundle: nil)
         static let Groups:UIStoryboard = .init(name: "Groups", bundle: nil)
+        static let Load:UIStoryboard = .init(name: "LoadStoryboard", bundle: nil)
     }
     
     enum Cell {

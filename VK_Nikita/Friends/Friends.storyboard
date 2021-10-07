@@ -4,50 +4,114 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Friends-->
+        <!--Friend View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="friendVC" id="Y6W-OH-hqX" customClass="FriendViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc" customClass="GradientView" customModule="VK_Nikita" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LWq-ic-JFm">
-                                <rect key="frame" x="0.0" y="160" width="414" height="702"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="754"/>
+                                <color key="backgroundColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="LwC-9c-Kej" customClass="GradientView" customModule="VK_Nikita" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="184"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search" textAlignment="center" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="veh-eh-qTh">
+                                            <rect key="frame" x="0.0" y="164" width="414" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="VUx-LP-cb3"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="search"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="Y6W-OH-hqX" id="BfL-h9-4vd"/>
+                                            </connections>
+                                        </textField>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friends" translatesAutoresizingMaskIntoConstraints="NO" id="g1U-M9-PbB">
+                                            <rect key="frame" x="0.0" y="0.0" width="423" height="156"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="423" id="G6Y-hU-Va2"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="veh-eh-qTh" secondAttribute="trailing" id="2oS-sa-rAv"/>
+                                        <constraint firstItem="g1U-M9-PbB" firstAttribute="top" secondItem="LwC-9c-Kej" secondAttribute="top" id="PH0-XV-gzR"/>
+                                        <constraint firstItem="g1U-M9-PbB" firstAttribute="leading" secondItem="LwC-9c-Kej" secondAttribute="leading" id="Vgm-44-gAb"/>
+                                        <constraint firstItem="veh-eh-qTh" firstAttribute="leading" secondItem="LwC-9c-Kej" secondAttribute="leading" id="XEf-Bj-fhq"/>
+                                        <constraint firstItem="veh-eh-qTh" firstAttribute="top" secondItem="g1U-M9-PbB" secondAttribute="bottom" constant="8" symbolic="YES" id="aU1-b5-PPF"/>
+                                        <constraint firstAttribute="trailing" secondItem="g1U-M9-PbB" secondAttribute="trailing" constant="-9" id="oIp-gp-HwX"/>
+                                        <constraint firstAttribute="bottom" secondItem="veh-eh-qTh" secondAttribute="bottom" id="q81-Uq-oyw"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                            <color key="value" red="0.1382476091" green="0.62303572890000003" blue="0.87523812059999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
+                                            <point key="value" x="0.0" y="2"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
+                                            <point key="value" x="1" y="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="WEu-sl-R2a"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="sVn-MW-6mb"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="veh-eh-qTh">
-                                <rect key="frame" x="0.0" y="140" width="414" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="search"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="BfL-h9-4vd"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                         <constraints>
-                            <constraint firstItem="veh-eh-qTh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="1hI-9C-2dh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="LWq-ic-JFm" secondAttribute="bottom" id="6ed-t6-SYR"/>
                             <constraint firstItem="LWq-ic-JFm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6jj-5e-4Pr"/>
                             <constraint firstItem="LWq-ic-JFm" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="Fbv-iC-EYO"/>
-                            <constraint firstItem="veh-eh-qTh" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="140" id="VYm-al-NFE"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LWq-ic-JFm" secondAttribute="trailing" id="a1T-rp-w4a"/>
-                            <constraint firstItem="veh-eh-qTh" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="onn-0J-637"/>
-                            <constraint firstItem="veh-eh-qTh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="p1j-ek-EYt"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
+                                <point key="value" x="1" y="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
+                                <point key="value" x="1" y="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
-                    <navigationItem key="navigationItem" title="Friends" id="De6-Ds-j9w">
+                    <navigationItem key="navigationItem" id="De6-Ds-j9w">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="SxV-pk-ssQ">
                             <connections>
                                 <action selector="logout:" destination="Y6W-OH-hqX" id="Vhd-8X-Gs6"/>
@@ -66,13 +130,26 @@
         <!--Navigation Controller-->
         <scene sceneID="UX0-Tk-edd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e6T-rk-X0S" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="e6T-rk-X0S" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="WyO-Se-dBd">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WyO-Se-dBd">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="AccentColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" hidden="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sh6-wD-z7b">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </toolbar>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="7Pd-uc-c66"/>
                     </connections>
@@ -85,19 +162,14 @@
         <scene sceneID="fDV-zU-20I">
             <objects>
                 <viewController storyboardIdentifier="friendCollectionVC" id="9pY-Eq-3Sv" customClass="FriendCollectionViewController" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="W7x-8Y-f2n">
+                    <view key="view" contentMode="scaleToFill" id="W7x-8Y-f2n" customClass="GradientView" customModule="VK_Nikita" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FID-IJ-TOU">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JOg-sx-Els">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
+                                <color key="backgroundColor" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewLayout key="collectionViewLayout" id="LJM-fP-yf9" customClass="CollectionViewCustomLayout" customModule="VK_Nikita" customModuleProvider="target"/>
                                 <cells/>
                                 <connections>
                                     <outlet property="dataSource" destination="9pY-Eq-3Sv" id="6Ee-Za-5o9"/>
@@ -113,6 +185,26 @@
                             <constraint firstItem="FID-IJ-TOU" firstAttribute="leading" secondItem="QAk-Xd-Ylj" secondAttribute="leading" id="l5c-ky-Frh"/>
                             <constraint firstItem="QAk-Xd-Ylj" firstAttribute="bottom" secondItem="FID-IJ-TOU" secondAttribute="bottom" id="p0s-Sb-xil"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" red="0.59680229429999998" green="0.823341608" blue="0.9416937232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="startLocation">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="endLocation">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
+                                <point key="value" x="1" y="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
+                                <point key="value" x="1" y="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" id="n1V-oL-amI"/>
                     <connections>
@@ -125,6 +217,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="friends" width="608" height="1071"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
