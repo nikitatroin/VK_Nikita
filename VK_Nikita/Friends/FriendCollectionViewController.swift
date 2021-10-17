@@ -12,6 +12,8 @@ class FriendCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
      var avatar:[UIImage?] = []
+     var selcetedIndexPath:IndexPath!
+    
     private var layout = CollectionViewCustomLayout()
     
     override func viewDidLoad() {
@@ -30,6 +32,16 @@ class FriendCollectionViewController: UIViewController {
     private func configureCollectionView () {
         self.collectionView.collectionViewLayout = self.layout
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            let detailVC = segue.destination as! DetailPhotoVC
+            detailVC.image = sender as! UIImage?
+            //detailVC.images = sender as? [UIImage]
+        }
+    }
 }
 
     extension FriendCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
@@ -46,10 +58,35 @@ class FriendCollectionViewController: UIViewController {
             return cell
 
         }
-        
-        
+    
         func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             
-        }
     }
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let image = self.avatar[indexPath.row]
+            //let images = self.avatar
+            self.selcetedIndexPath = indexPath
+            self.performSegue(withIdentifier: "ShowDetail", sender: image)
+            //self.performSegue(withIdentifier: "ShowDetail", sender: images)
+        }
+        
+    }
+
+extension FriendCollectionViewController:ZoomingViewController
+{
+    func zoomingImageView(for translition: ZoomTransitioningDelegate) -> UIImageView? {
+        if let indexPath = self.selcetedIndexPath {
+            let cell = collectionView.cellForItem(at: indexPath) as! FriendsCollectionViewCell
+            return cell.avatar
+        }
+        return nil
+    }
+    
+    func zoomingBackgroundView(for translition: ZoomTransitioningDelegate) -> UIView? {
+        return nil
+    }
+    
+    
+}
 

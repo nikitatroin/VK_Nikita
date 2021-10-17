@@ -21,7 +21,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-// MARK: Constanst
+// MARK: Data
     let friendsList = [
             User(userName: "Коля",
                  userAvatar: (UIImage(named: "1")!),
@@ -84,7 +84,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
        
     }
     
-// MARK: Funcs
+// MARK: Make arrs
     
     private func makeNamesList (){
         friendsList.forEach {
@@ -116,6 +116,8 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
             findedArr = findedArr.sorted(by: <)
         }
     }
+    
+// MARK: Get info for cells
     
     private func getNameForCell (_ indexPath: IndexPath) -> String {
         //создаём пустой массив имён, которые будут содержаться в секции
@@ -152,6 +154,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         return photos
     }
     
+// MARK: Configure search
     
     internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.searchBar.resignFirstResponder()
@@ -173,6 +176,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     return true
     }
     
+// MARK: Handle gesture
     
     // action для нажатия
     @objc func handleLongPress (_ gesture:UILongPressGestureRecognizer) {
@@ -192,7 +196,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
-// MARK: Extension
+// MARK: UITableViewDataSource
 
 extension FriendViewController: UITableViewDataSource {
     
@@ -224,7 +228,7 @@ extension FriendViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: R.Identifier.friendTableCell, for: indexPath) as? FriendsTableViewCell {
             if searchBar.text?.isEmpty != true {
                 cell.name.text = searchArr[indexPath.row]
-                cell.avatar.image = UIImage()
+                cell.avatar.image = getUserAvatarForCell(indexPath)
                 return cell
             } else {
                 let lpgr = UITapGestureRecognizer(target: self, action: #selector(FriendViewController.handleLongPress))
@@ -286,6 +290,7 @@ extension FriendViewController: UITableViewDataSource {
     
     
 }
+// MARK: UITableViewDelegate
 
     extension FriendViewController: UITableViewDelegate {
         
@@ -294,6 +299,7 @@ extension FriendViewController: UITableViewDataSource {
             let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
                     vc?.avatar = getPhotosFriend(indexPath)
                     self.navigationController?.pushViewController(vc!, animated: true)
+            
                 }
         
         func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -310,6 +316,15 @@ extension FriendViewController: UITableViewDataSource {
             shadow?.layer.shadowOffset = .init(width: -5, height: 5)
             let radius = view!.layer.cornerRadius
             shadow?.layer.shadowPath = UIBezierPath(roundedRect: view!.bounds, cornerRadius: radius).cgPath
+            //изначальное состояние cell
+            cell.alpha = 0
+            let transform = CATransform3DTranslate(CATransform3DIdentity, -250, 30, 0)
+            cell.layer.transform = transform
+            //состояние после прогрузки
+            UIView.animate(withDuration: 1) {
+                cell.alpha = 1
+                cell.layer.transform = CATransform3DIdentity
+            }
             
         }
     }

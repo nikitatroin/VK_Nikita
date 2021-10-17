@@ -10,7 +10,8 @@ import UIKit
 @IBDesignable
 class ViewController: UIViewController {
 
-
+    // MARK: - Outlets
+    
     @IBOutlet weak var loginLabel: UILabel!
     
     @IBOutlet weak var passwordLabel: UILabel!
@@ -30,6 +31,12 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var button: UIButton!
+
+    // MARK: - Properties
+    var animator: UIViewPropertyAnimator!
+    
+    
+    // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +46,9 @@ class ViewController: UIViewController {
         animateFieldAppearing()
         let hideKeyboardGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(hideKeyboard))
+        let panLoginButton = UIPanGestureRecognizer(target: self,
+                                                    action: #selector(onPan(_:)))
+        self.view.addGestureRecognizer(panLoginButton)
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
         self.tabBarController?.viewControllers = []
     }
@@ -58,6 +68,8 @@ class ViewController: UIViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
+    
+    // MARK: - Methods
     
     @objc private func keyboardWasShow(notification:Notification) {
         let info = notification.userInfo! as NSDictionary
@@ -88,6 +100,26 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc private func onPan (_ gesture:UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            self.animator = .init(duration: 5, curve: .linear, animations: {
+                self.button.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            })
+            self.animator.startAnimation()
+        case .changed:
+            let translation = gesture.translation(in: self.view)
+            self.button.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+        case .ended:
+            UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: .calculationModeCubicPaced) {
+                self.button.transform = .identity
+            }
+        default:
+            return
+        }
+    }
+    
+    // MARK: - Alert
     private func showAlertMSG(){
         let alertController = UIAlertController(title: "Ошибка",
                                                 message:
@@ -101,6 +133,7 @@ class ViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    
     private func showUserScene(){
         let vc = R.Storyboard.Tabbar.instantiateInitialViewController()
         if let vc = vc as? TabBarViewController {
@@ -109,6 +142,7 @@ class ViewController: UIViewController {
             
         }
     }
+    // MARK: - Gradient
     
     private func addGradient() {
         let layer = CAGradientLayer()
@@ -131,52 +165,66 @@ class ViewController: UIViewController {
         layer.frame = self.Gradient.bounds
     }
     
+    // MARK: - Animation
     private func animateFieldAppearing () {
-        let offset = self.view.bounds.width
-        login.transform = CGAffineTransform(translationX: -offset, y: 0)
-        password.transform = CGAffineTransform(translationX: offset, y: 0)
+        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeAnimation.fromValue = 0
+        fadeAnimation.fromValue = 1
         
-        UIView.animate(withDuration: 1,
-                       delay: 1,
-                       options: .curveEaseOut,
-                       animations: {
-            self.login.transform = .identity
-            self.password.transform = .identity
-        },
-                       completion: nil)
+        let springAnimation = CASpringAnimation(keyPath: "transform.scale")
+        springAnimation.fromValue = 0
+        springAnimation.toValue = 1
+        springAnimation.stiffness = 150
+        springAnimation.mass = 2
         
-        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.duration = 1
+        animationGroup.timeOffset = 1
+        animationGroup.beginTime = CACurrentMediaTime() + 1.5
+        animationGroup.fillMode = .both
+        animationGroup.timingFunction = .init(name: .default)
+        animationGroup.animations = [fadeAnimation,springAnimation]
+        self.login.layer.add(animationGroup, forKey: nil)
+        self.password.layer.add(animationGroup, forKey: nil)
     }
     
     private func animateLogoAppearing () {
         let offset = self.view.bounds.height/2
         logo.transform = CGAffineTransform(translationX: 0, y: -offset)
         
-        UIView.animate(withDuration: 1,
-                       delay: 1,
-                       usingSpringWithDamping: 0.7,
-                       initialSpringVelocity: 0,
-                       options: .curveEaseOut,
-                       animations: {
-            self.logo.transform = .identity
-        },
-                       completion: nil)
-        
+        let animator = UIViewPropertyAnimator(duration: 1,
+                                              dampingRatio: 0.7) {
+        self.logo.transform = .identity
+        }
+        animator.startAnimation(afterDelay: 1)
         
     }
     
     private func animateLabelAppearing () {
-        let animationKeyPath = "opacity"
-        let animation = CABasicAnimation(keyPath: animationKeyPath)
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = 1
-        animation.fillMode = CAMediaTimingFillMode.backwards
-        animation.beginTime = CACurrentMediaTime() + 2
-        animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        self.loginLabel.layer.add(animation, forKey: nil)
-        self.passwordLabel.layer.add(animation, forKey: nil)
-        
+        // abs это чистое число без минуса, так как результат вычитание будет отрицательным
+        //midY это центр по y каждого из наших элементов
+        UIView.animate(withDuration: 0) {
+            let offset = abs(self.loginLabel.frame.midY -
+                             self.passwordLabel.frame.midY)
+            self.loginLabel.transform = CGAffineTransform(translationX: 0, y: offset)
+            self.passwordLabel.transform = CGAffineTransform(translationX: 0, y: -offset)
+        }
+
+        UIView.animateKeyframes(withDuration: 1,
+                                delay: 1,
+                                options: .calculationModeCubicPaced, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0,
+                               relativeDuration: 0.5) {
+                self.loginLabel.transform = CGAffineTransform(translationX: 150, y: 50)
+                self.passwordLabel.transform = CGAffineTransform(translationX: -150, y: 50)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.5,
+                               relativeDuration: 0.5) {
+                self.loginLabel.transform = .identity
+                self.passwordLabel.transform = .identity
+            }
+        },
+                                completion: nil)
     }
     
     private func animateLoginButton () {
