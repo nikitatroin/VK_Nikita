@@ -41,6 +41,10 @@
 		1F5286D82702187800BA8FAC /* NewsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F5286D72702187800BA8FAC /* NewsVC.storyboard */; };
 		1F5286DA270218A200BA8FAC /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5286D9270218A200BA8FAC /* NewsVC.swift */; };
 		1F5286DF27022A3900BA8FAC /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5286DE27022A3900BA8FAC /* NewsCell.swift */; };
+		1F80627E271D621D006E79F7 /* Singletone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F80627D271D621D006E79F7 /* Singletone.swift */; };
+		1F806283271D63C2006E79F7 /* Test.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F806282271D63C2006E79F7 /* Test.storyboard */; };
+		1F806285271D63E1006E79F7 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F806284271D63E1006E79F7 /* TestVC.swift */; };
+		1F806287271D6591006E79F7 /* TestVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F806286271D6591006E79F7 /* TestVC2.swift */; };
 		1FEC4EAB271585D1009A391D /* ZoomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC4EAA271585D1009A391D /* ZoomTransitioningDelegate.swift */; };
 		1FEC4EAD2715AB97009A391D /* DetailPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC4EAC2715AB97009A391D /* DetailPhotoVC.swift */; };
 /* End PBXBuildFile section */
@@ -82,6 +86,10 @@
 		1F5286D72702187800BA8FAC /* NewsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsVC.storyboard; sourceTree = "<group>"; };
 		1F5286D9270218A200BA8FAC /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		1F5286DE27022A3900BA8FAC /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		1F80627D271D621D006E79F7 /* Singletone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singletone.swift; sourceTree = "<group>"; };
+		1F806282271D63C2006E79F7 /* Test.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Test.storyboard; sourceTree = "<group>"; };
+		1F806284271D63E1006E79F7 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		1F806286271D6591006E79F7 /* TestVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC2.swift; sourceTree = "<group>"; };
 		1FEC4EAA271585D1009A391D /* ZoomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTransitioningDelegate.swift; sourceTree = "<group>"; };
 		1FEC4EAC2715AB97009A391D /* DetailPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,13 +114,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		1F19251126EF7754006EB5D6 /* Delegate */ = {
+		1F19251126EF7754006EB5D6 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
 				1F4C83F426E50AC900617605 /* AppDelegate.swift */,
 				1F4C83F626E50AC900617605 /* SceneDelegate.swift */,
+				1FEC4EAA271585D1009A391D /* ZoomTransitioningDelegate.swift */,
 			);
-			path = Delegate;
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		1F19251226EF7782006EB5D6 /* R */ = {
@@ -139,6 +148,7 @@
 				1F4C840226E50ACE00617605 /* LaunchScreen.storyboard */,
 				1F4C83FD26E50AC900617605 /* VK_Nikita.xcdatamodeld */,
 				1F19255226F0CC2E006EB5D6 /* Assets.xcassets */,
+				1F4C840526E50ACE00617605 /* Info.plist */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -242,21 +252,21 @@
 		1F4C83F326E50AC900617605 /* VK_Nikita */ = {
 			isa = PBXGroup;
 			children = (
+				1F80627F271D639D006E79F7 /* test */,
+				1F80627C271D61F4006E79F7 /* Singetone */,
 				1F19251026EF7732006EB5D6 /* Main */,
 				1F19252126EF7BF4006EB5D6 /* Friends */,
 				1F19254326EF7E99006EB5D6 /* Groups */,
 				1F19251C26EF7B67006EB5D6 /* Tabbar */,
 				1F5286D62702186300BA8FAC /* News */,
 				1F19252826EF7D50006EB5D6 /* Cells */,
-				1F4C83F226E50AC900617605 /* Products */,
-				1F19251126EF7754006EB5D6 /* Delegate */,
+				1F19251126EF7754006EB5D6 /* Delegates */,
 				1F19251226EF7782006EB5D6 /* R */,
 				1F476320270CB4C90090B804 /* Views */,
-				1FEC4EA92715851E009A391D /* ZoomTransitioningDelegate */,
 				1F47631C270CB15D0090B804 /* LoadVC */,
 				1F19251526EF7816006EB5D6 /* Model */,
+				1F4C83F226E50AC900617605 /* Products */,
 				1F19251B26EF78C5006EB5D6 /* Other */,
-				1F4C840526E50ACE00617605 /* Info.plist */,
 			);
 			path = VK_Nikita;
 			sourceTree = "<group>";
@@ -278,12 +288,22 @@
 			path = News;
 			sourceTree = "<group>";
 		};
-		1FEC4EA92715851E009A391D /* ZoomTransitioningDelegate */ = {
+		1F80627C271D61F4006E79F7 /* Singetone */ = {
 			isa = PBXGroup;
 			children = (
-				1FEC4EAA271585D1009A391D /* ZoomTransitioningDelegate.swift */,
+				1F80627D271D621D006E79F7 /* Singletone.swift */,
 			);
-			path = ZoomTransitioningDelegate;
+			path = Singetone;
+			sourceTree = "<group>";
+		};
+		1F80627F271D639D006E79F7 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				1F806282271D63C2006E79F7 /* Test.storyboard */,
+				1F806284271D63E1006E79F7 /* TestVC.swift */,
+				1F806286271D6591006E79F7 /* TestVC2.swift */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +373,7 @@
 				1F19254226EF7E86006EB5D6 /* GroupsTableViewCell.xib in Resources */,
 				1F5286D82702187800BA8FAC /* NewsVC.storyboard in Resources */,
 				1F4C840426E50ACE00617605 /* LaunchScreen.storyboard in Resources */,
+				1F806283271D63C2006E79F7 /* Test.storyboard in Resources */,
 				1F19254526EF7ECB006EB5D6 /* Groups.storyboard in Resources */,
 				1F4C83FC26E50AC900617605 /* Main.storyboard in Resources */,
 				1F19255326F0CC2E006EB5D6 /* Assets.xcassets in Resources */,
@@ -384,6 +405,7 @@
 				1F476324270CE6820090B804 /* CollectionViewCustonLayout.swift in Sources */,
 				1F1F4FEB26F8FDC9001EEEEA /* Letters.swift in Sources */,
 				1F054ADE26FC9C7000E9CFC6 /* GroupsTVC.swift in Sources */,
+				1F806285271D63E1006E79F7 /* TestVC.swift in Sources */,
 				1F4763192709AB680090B804 /* LoadVC.swift in Sources */,
 				1F4C83F726E50AC900617605 /* SceneDelegate.swift in Sources */,
 				1FEC4EAB271585D1009A391D /* ZoomTransitioningDelegate.swift in Sources */,
@@ -391,8 +413,10 @@
 				1F19254926EF7F47006EB5D6 /* AllGroupsViewController.swift in Sources */,
 				1F19254726EF7F33006EB5D6 /* AddedGroupsViewController.swift in Sources */,
 				1F19251926EF7840006EB5D6 /* Groups.swift in Sources */,
+				1F80627E271D621D006E79F7 /* Singletone.swift in Sources */,
 				1F19254F26F0B4EF006EB5D6 /* TabBarViewController.swift in Sources */,
 				1F19253D26EF7E5A006EB5D6 /* FriendsCollectionViewCell.swift in Sources */,
+				1F806287271D6591006E79F7 /* TestVC2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,7 +565,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23339VWS7W;
-				INFOPLIST_FILE = VK_Nikita/Info.plist;
+				INFOPLIST_FILE = VK_Nikita/Other/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -560,7 +584,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23339VWS7W;
-				INFOPLIST_FILE = VK_Nikita/Info.plist;
+				INFOPLIST_FILE = VK_Nikita/Other/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
