@@ -120,7 +120,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
 // MARK: Get info for cells
     
     private func getNameForCell (_ indexPath: IndexPath) -> String {
-        //создаём пустой массив имён, которые будут содержаться в секции
+        //создаём пустой массив имён, для букв в каждой секции
         var namesOfRows = [String]()
         nameList.forEach {
             //проходимся по всем именем в массиве имён

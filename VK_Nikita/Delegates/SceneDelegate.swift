@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let _ = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: scene as! UIWindowScene)
-        self.window?.rootViewController = R.Storyboard.Test.instantiateInitialViewController()
+        self.window?.rootViewController = R.Storyboard.Main.instantiateInitialViewController()
         self.window?.makeKeyAndVisible()
     }
 
