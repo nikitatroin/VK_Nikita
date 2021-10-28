@@ -161,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2099" y="88"/>
+            <point key="canvasLocation" x="2012" y="74"/>
         </scene>
         <!--AuthVC-->
         <scene sceneID="qQ1-TG-cMO">
@@ -221,16 +221,16 @@
             </objects>
             <point key="canvasLocation" x="959" y="785"/>
         </scene>
-        <!--Network FriendsVC-->
+        <!--FriendsVC-->
         <scene sceneID="bvd-Uq-fO5">
             <objects>
-                <tableViewController id="zP9-sU-VXZ" customClass="NetworkFriendsVC" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zP9-sU-VXZ" customClass="FriendsVC" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fP7-nh-zma">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="AHc-1x-mjq" imageView="d0Y-pX-Hnj" style="IBUITableViewCellStyleDefault" id="sNV-Pz-6fX">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="AHc-1x-mjq" style="IBUITableViewCellStyleDefault" id="sNV-Pz-6fX">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sNV-Pz-6fX" id="SmC-tM-JnM">
@@ -238,16 +238,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AHc-1x-mjq">
-                                            <rect key="frame" x="78" y="0.0" width="316" height="43.5"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="unicorn.png" id="d0Y-pX-Hnj">
-                                            <rect key="frame" x="20" y="0.0" width="43" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -266,7 +262,6 @@
     </scenes>
     <resources>
         <image name="VK logo" width="2400" height="2398"/>
-        <image name="unicorn.png" width="200" height="205"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
