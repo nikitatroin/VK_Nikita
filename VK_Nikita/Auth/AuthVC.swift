@@ -80,9 +80,15 @@ class AuthVC: UIViewController, WKNavigationDelegate {
         guard let token = params["access_token"], let userId = params["user_id"] else {return}
         print(token)
         print(userId)
-        //совершаем переход на tableView
-        performSegue(withIdentifier: "showFriendSegua", sender: nil)
         
+        //совершаем переход на tableView
+        //performSegue(withIdentifier: "showFriendSegua", sender: nil)
+        let vc2 = R.Storyboard.Tabbar.instantiateInitialViewController()
+        if let vc = vc2 as? TabBarViewController {
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
+            
         //закинули в session полученные от сервера данные
         Session.shared.token = token
         Session.shared.userId = userId

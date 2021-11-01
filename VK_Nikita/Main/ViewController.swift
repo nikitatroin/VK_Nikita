@@ -138,7 +138,7 @@ class ViewController: UIViewController {
         let vc = R.Storyboard.Tabbar.instantiateInitialViewController()
         if let vc = vc as? TabBarViewController {
             vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true)
+            self.present(vc, animated: true)
             
         }
     }
