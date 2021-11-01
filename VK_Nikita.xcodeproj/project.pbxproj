@@ -287,6 +287,7 @@
 			children = (
 				1F80627F271D639D006E79F7 /* test */,
 				1F80627C271D61F4006E79F7 /* Lessons */,
+				1F8DDC05272A8D18003EEA79 /* Auth */,
 				1F19251026EF7732006EB5D6 /* Main */,
 				1F924D6F272576B400502879 /* vk-api */,
 				1F19252126EF7BF4006EB5D6 /* Friends */,
@@ -417,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				1F8DDC06272A8D22003EEA79 /* Friends */,
-				1F8DDC05272A8D18003EEA79 /* Auth */,
 			);
 			path = Modules;
 			sourceTree = "<group>";

@@ -84,6 +84,7 @@ final class FriendsApi {
             URLQueryItem(name: "count", value: "10"),
             URLQueryItem(name: "access_token", value: token),
             URLQueryItem(name: "v", value: version),
+            URLQueryItem(name: "lang", value: "3"),
         ]
         
         guard let myURL = components.url else { return }

@@ -10,7 +10,6 @@ import UIKit
 class FriendViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Outlets
-    
     @IBOutlet weak var searchBar: UITextField!
     
     @IBOutlet private weak var tableView: UITableView!
@@ -21,81 +20,94 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-// MARK: Data
+    // MARK: Data
     let friendsList = [
-            User(userName: "Коля",
-                 userAvatar: (UIImage(named: "1")!),
-                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!,
-                              UIImage(named: "4")!, UIImage(named: "5")!]),
-            
-            User(userName: "Ваня",
-                 userAvatar: (UIImage(named: "Я")!),
-                 userPhotos: [UIImage(named: "5")!, UIImage(named: "3")!, UIImage(named: "2")!]),
-            
-            User(userName: "Василий",
-                 userAvatar: (UIImage(named: "3")!),
-                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!]),
-            
-            User(userName: "Анжелика",
-                 userAvatar: (UIImage(named: "4")!),
-                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]),
-            
-            User(userName: "Николай",
-                 userAvatar: (UIImage(named: "5")!),
-                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
-            
-            User(userName: "Аня",
-                 userAvatar: (UIImage(named: "Я")!),
-                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
-            
-            User(userName: "Иван",
-                 userAvatar: (UIImage(named: "5")!),
-                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]),
-            
-            User(userName: "Ксения",
-                 userAvatar: (UIImage(named: "3")!),
-                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!,
-                              UIImage(named: "5")!]),
-            
-            User(userName: "Анна",
-                 userAvatar: (UIImage(named: "4")!),
-                 userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!,
-                              UIImage(named: "3")!, UIImage(named: "5")!])
-        ]
+        User(userName: "Коля",
+             userAvatar: (UIImage(named: "1")!),
+             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!,
+                          UIImage(named: "4")!, UIImage(named: "5")!]),
+        
+        User(userName: "Ваня",
+             userAvatar: (UIImage(named: "Я")!),
+             userPhotos: [UIImage(named: "5")!, UIImage(named: "3")!, UIImage(named: "2")!]),
+        
+        User(userName: "Василий",
+             userAvatar: (UIImage(named: "3")!),
+             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!]),
+        
+        User(userName: "Анжелика",
+             userAvatar: (UIImage(named: "4")!),
+             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]),
+        
+        User(userName: "Николай",
+             userAvatar: (UIImage(named: "5")!),
+             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
+        
+        User(userName: "Аня",
+             userAvatar: (UIImage(named: "Я")!),
+             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
+        
+        User(userName: "Иван",
+             userAvatar: (UIImage(named: "5")!),
+             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]),
+        
+        User(userName: "Ксения",
+             userAvatar: (UIImage(named: "3")!),
+             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!,
+                          UIImage(named: "5")!]),
+        
+        User(userName: "Анна",
+             userAvatar: (UIImage(named: "4")!),
+             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!,
+                          UIImage(named: "3")!, UIImage(named: "5")!])
+    ]
     
+    var friends: [Friend4] = []
     
     var nameList: [String] = []
     var lettersList: [String] = []
     var searchArr: [String] = []
     var findedArr: [String] = []
     
-
+    // MARK: - Services
     
-// MARK: ViewDidLoad
+    let friendsApi = FriendsApi()
+    let groupApi = GroupApi()
+    let photoApi = PhotoApi()
+    
+    // MARK: ViewDidLoad
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            self.friendsApi.getFriends4URLSession { [weak self] friends in
+                guard let self = self else { return }
+                self.friends = friends
+                self.makeNamesList()
+                self.makeLettersList()
+                self.searchingArr ()
+                self.findingArr ()
+                self.tableView.reloadData()
+            }
+        }
         self.tableView.register(R.Cell.friendTableCell, forCellReuseIdentifier: R.Identifier.friendTableCell)
         self.searchBar.delegate = self
-        makeNamesList()
-        makeLettersList()
-        searchingArr ()
-        findingArr ()
        
     }
     
-// MARK: Make arrs
+    // MARK: Make arrs
     
     private func makeNamesList (){
-        friendsList.forEach {
-            nameList.append($0.userName)
+        self.friends.forEach {
+            nameList.append($0.fullname)
             nameList = nameList.sorted(by: <)
         }
     }
     
     private func makeLettersList(){
-        friendsList.forEach {
-            lettersList.append(String($0.userName.first!))
+        self.friends.forEach {
+            lettersList.append(String($0.fullname.first!))
             let letersSet = Set(lettersList)
             lettersList = Array(letersSet)
             lettersList = lettersList.sorted(by: <)
@@ -103,21 +115,21 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func searchingArr (){
-        friendsList.forEach {
-            searchArr.append($0.userName)
+        self.friends.forEach {
+            searchArr.append($0.fullname)
         }
         searchArr = searchArr.sorted(by: <)
     }
     
     
     private func findingArr (){
-        friendsList.forEach {
-            findedArr.append($0.userName)
+        self.friends.forEach {
+            findedArr.append($0.fullname)
             findedArr = findedArr.sorted(by: <)
         }
     }
     
-// MARK: Get info for cells
+    // MARK: Get info for cells
     
     private func getNameForCell (_ indexPath: IndexPath) -> String {
         //создаём пустой массив имён, для букв в каждой секции
@@ -133,10 +145,13 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func getUserAvatarForCell (_ indexPath: IndexPath) -> UIImage? {
-        for friend in friendsList {
+        for friend in friends {
             let namesRows = getNameForCell(indexPath)
-            if friend.userName.contains(namesRows) {
-                return friend.userAvatar
+            if friend.fullname.contains(namesRows) {
+                let url = URL(string: friend.photo100)
+                guard let data = try? Data(contentsOf: url!) else { return nil }
+                let image = UIImage(data: data)
+                return image
             }
         }
         return nil
@@ -146,7 +161,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     private func getPhotosFriend (_ indexPath: IndexPath) -> [UIImage?] {
         var photos: [UIImage?] = []
         for friend in friendsList{
-        let namesRows = getNameForCell(indexPath)
+            let namesRows = getNameForCell(indexPath)
             if friend.userName.contains(namesRows) {
                 photos.append(contentsOf: friend.userPhotos)
             }
@@ -154,7 +169,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         return photos
     }
     
-// MARK: Configure search
+    // MARK: Configure search
     
     internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.searchBar.resignFirstResponder()
@@ -172,11 +187,11 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-    tableView.reloadData()
-    return true
+        tableView.reloadData()
+        return true
     }
     
-// MARK: Handle gesture
+    // MARK: Handle gesture
     
     // action для нажатия
     @objc func handleLongPress (_ gesture:UILongPressGestureRecognizer) {
@@ -237,13 +252,14 @@ extension FriendViewController: UITableViewDataSource {
                 cell.shadowView.isUserInteractionEnabled = true
                 cell.name.text = getNameForCell(indexPath)
                 cell.avatar.image = getUserAvatarForCell(indexPath)
-                    }
-                return cell
             }
-        return UITableViewCell()
+            return cell
         }
+        return UITableViewCell()
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let header = GradientView()
         let label = UILabel(frame: CGRect(x: 8, y: 5, width: 20, height: 20))
         label.textColor = UIColor.black.withAlphaComponent(0.5)
@@ -256,7 +272,7 @@ extension FriendViewController: UITableViewDataSource {
         header.startLocation = 0
         header.endLocation = 1
         header.addSubview(label)
-        
+
         return header
     }
     
@@ -266,66 +282,55 @@ extension FriendViewController: UITableViewDataSource {
     }
     
     
-    // настройка title на header в каждой секции
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if searchBar.text?.isEmpty == false {
-//            return "Founded matches \(searchArr.count)"
-//        }
-//        return lettersList[section]
-//    }
+     //настройка title на header в каждой секции, НЕ РАБОТАЕТ ЕСЛИ ЕСТЬ viewForHeaderInSection
     
-//    // боковая панель с буквами
-//    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-//        var indexTitleList = [String]()
-//        for element in lettersList {
-//            indexTitleList.append(element)
+//        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//            if searchBar.text?.isEmpty == false {
+//                return "Founded matches \(searchArr.count)"
+//            }
+//            return lettersList[section]
 //        }
-//        return indexTitleList
-//    }
-//    // переносит нас к букве секции
-//    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-//        guard let index = lettersList.firstIndex(of: title) else { return -1 }
-//        return index
-//    }
+    
+        // боковая панель с буквами
+        func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+            var indexTitleList = [String]()
+            for element in lettersList {
+                indexTitleList.append(element)
+            }
+            return indexTitleList
+        }
+        // переносит нас к букве секции
+        func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+            guard let index = lettersList.firstIndex(of: title) else { return -1 }
+            return index
+        }
     
     
 }
 // MARK: UITableViewDelegate
 
-    extension FriendViewController: UITableViewDelegate {
+extension FriendViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
+        vc?.avatar = getPhotosFriend(indexPath)
+        self.navigationController?.pushViewController(vc!, animated: true)
         
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-            let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
-                    vc?.avatar = getPhotosFriend(indexPath)
-                    self.navigationController?.pushViewController(vc!, animated: true)
-            
-                }
-        
-        func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-            let view = (cell as? FriendsTableViewCell)!.avatar
-            let shadow = (cell as? FriendsTableViewCell)!.shadowView
-            view?.contentMode = .scaleAspectFill
-            view?.layer.masksToBounds = true
-            view?.layer.cornerRadius = 8
-            shadow?.backgroundColor = .clear
-            shadow?.layer.masksToBounds = false
-            shadow?.layer.shadowColor = UIColor.black.cgColor
-            shadow?.layer.shadowRadius = 1.5
-            shadow?.layer.shadowOpacity = 0.5
-            shadow?.layer.shadowOffset = .init(width: -5, height: 5)
-            let radius = view!.layer.cornerRadius
-            shadow?.layer.shadowPath = UIBezierPath(roundedRect: view!.bounds, cornerRadius: radius).cgPath
-            //изначальное состояние cell
-            cell.alpha = 0
-            let transform = CATransform3DTranslate(CATransform3DIdentity, -250, 30, 0)
-            cell.layer.transform = transform
-            //состояние после прогрузки
-            UIView.animate(withDuration: 1) {
-                cell.alpha = 1
-                cell.layer.transform = CATransform3DIdentity
-            }
-            
-        }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        (cell as? FriendsTableViewCell)?.configure()
+        //изначальное состояние cell
+        cell.alpha = 0
+        let transform = CATransform3DTranslate(CATransform3DIdentity, -250, 30, 0)
+        cell.layer.transform = transform
+        //состояние после загрузки
+        UIView.animate(withDuration: 1) {
+            cell.alpha = 1
+            cell.layer.transform = CATransform3DIdentity
+        }
+        
+    }
+}
 
