@@ -11,12 +11,14 @@ class FriendCollectionViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-     var avatar:[UIImage?] = []
-     var selcetedIndexPath:IndexPath!
+    var photos: [UIImage?] = []
+    var photosURL: [Size?] = []
+    var selcetedIndexPath:IndexPath!
     
     private var layout = CollectionViewCustomLayout()
     
     override func viewDidLoad() {
+        self.photos = convertURLtoImage()
         super.viewDidLoad()
         collectionView.register(R.Cell.friendCollectionCell, forCellWithReuseIdentifier: R.Identifier.friendCollectionCell)
         configureCollectionView()
@@ -29,6 +31,16 @@ class FriendCollectionViewController: UIViewController {
         
     }
     
+    private func convertURLtoImage () -> [UIImage?] {
+        var imageContener: [UIImage] = []
+        for photoURL in photosURL {
+            guard let data = try? Data(contentsOf: URL(string: photoURL!.url)!) else { return [UIImage()] }
+            imageContener.append(UIImage(data: data)!)
+        }
+        return imageContener
+    }
+
+    
     private func configureCollectionView () {
         self.collectionView.collectionViewLayout = self.layout
     }
@@ -39,39 +51,37 @@ class FriendCollectionViewController: UIViewController {
         if segue.identifier == "ShowDetail" {
             let detailVC = segue.destination as! DetailPhotoVC
             detailVC.image = sender as! UIImage?
-            //detailVC.images = sender as? [UIImage]
         }
     }
 }
 
-    extension FriendCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
-        
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            avatar.count
-        }
-        
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.friendCollectionCell, for: indexPath) as! FriendsCollectionViewCell
-            
-            cell.avatar.image = avatar[indexPath.row]
-            
-            return cell
 
-        }
+extension FriendCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
-        func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-            
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        photos.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.Identifier.friendCollectionCell, for: indexPath) as! FriendsCollectionViewCell
         
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let image = self.avatar[indexPath.row]
-            //let images = self.avatar
-            self.selcetedIndexPath = indexPath
-            self.performSegue(withIdentifier: "ShowDetail", sender: image)
-            //self.performSegue(withIdentifier: "ShowDetail", sender: images)
-        }
+        cell.avatar.image = photos[indexPath.row]
+        
+        return cell
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let image = self.photos[indexPath.row]
+        self.selcetedIndexPath = indexPath
+        self.performSegue(withIdentifier: "ShowDetail", sender: image)
+    }
+    
+}
 
 extension FriendCollectionViewController:ZoomingViewController
 {

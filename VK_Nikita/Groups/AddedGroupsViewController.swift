@@ -16,31 +16,42 @@ class AddedGroupsViewController: UIViewController {
             let vc = segua.source as! AllGroupsViewController
             if let indexPath = vc.tableVIew.indexPathForSelectedRow?.row {
                 let group = vc.displayItem[indexPath]
+                let photo = vc.groupPhotos[indexPath]
                 if displayItem.isEmpty {
                     displayItem.append(group)
+                    groupPhotos.append(photo)
                     tableVIew.reloadData()
                 } else {
-                    let name = vc.displayItem[indexPath].name
-                    let image = vc.displayItem[indexPath].image
-                    if displayItem[indexPath].image == image && displayItem[indexPath].name == name {
-                      print(1)
-                    } else {
+                        let group = vc.displayItem[indexPath]
+                        let photo = vc.groupPhotos[indexPath]
                         displayItem.append(group)
+                        groupPhotos.append(photo)
                     }
                 }
-                tableVIew.reloadData()
             }
+        tableVIew.reloadData()
         }
         
+
+
+var displayItem = [Groups]()
+var groupPhotos: [UIImage?] = []
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+    self.tableVIew.register(R.Cell.groupTableCell, forCellReuseIdentifier: R.Identifier.groupsTableCell)
+    self.groupPhotos = self.convertURLtoImage()
+}
+
+private func convertURLtoImage () -> [UIImage?] {
+    var imageContener: [UIImage?] = []
+    for photoURL in displayItem {
+        guard let data = try? Data(contentsOf: URL(string: photoURL.photo)!) else { return [UIImage()] }
+        imageContener.append(UIImage(data: data)!)
     }
-    
-    var displayItem = [Groups]()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.tableVIew.register(R.Cell.groupTableCell, forCellReuseIdentifier: R.Identifier.groupsTableCell)
-    }
-    
+    return imageContener
+}
+
 }
 
 extension AddedGroupsViewController: UITableViewDataSource {
@@ -55,7 +66,7 @@ extension AddedGroupsViewController: UITableViewDataSource {
 
 extension AddedGroupsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as? GroupsTableViewCell)?.avatar.image = displayItem[indexPath.row].image
+        (cell as? GroupsTableViewCell)?.avatar.image = groupPhotos[indexPath.row]
         (cell as? GroupsTableViewCell)?.labelName.text = displayItem[indexPath.row].name
     }
     
@@ -66,6 +77,6 @@ extension AddedGroupsViewController: UITableViewDelegate {
             tableView.reloadData()
         }
     }
-
-}
     
+}
+
