@@ -21,63 +21,20 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Data
-    let friendsList = [
-        User(userName: "Коля",
-             userAvatar: (UIImage(named: "1")!),
-             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!,
-                          UIImage(named: "4")!, UIImage(named: "5")!]),
-        
-        User(userName: "Ваня",
-             userAvatar: (UIImage(named: "Я")!),
-             userPhotos: [UIImage(named: "5")!, UIImage(named: "3")!, UIImage(named: "2")!]),
-        
-        User(userName: "Василий",
-             userAvatar: (UIImage(named: "3")!),
-             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!]),
-        
-        User(userName: "Анжелика",
-             userAvatar: (UIImage(named: "4")!),
-             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]),
-        
-        User(userName: "Николай",
-             userAvatar: (UIImage(named: "5")!),
-             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
-        
-        User(userName: "Аня",
-             userAvatar: (UIImage(named: "Я")!),
-             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "5")!]),
-        
-        User(userName: "Иван",
-             userAvatar: (UIImage(named: "5")!),
-             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!]),
-        
-        User(userName: "Ксения",
-             userAvatar: (UIImage(named: "3")!),
-             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!,
-                          UIImage(named: "5")!]),
-        
-        User(userName: "Анна",
-             userAvatar: (UIImage(named: "4")!),
-             userPhotos: [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "4")!,
-                          UIImage(named: "3")!, UIImage(named: "5")!])
-    ]
-    
     var friends: [Friend4] = []
-    
+    var friendsPhotos: [FriendPhotos] = []
     var nameList: [String] = []
     var lettersList: [String] = []
     var searchArr: [String] = []
     var findedArr: [String] = []
     
     // MARK: - Services
-    
     let friendsApi = FriendsApi()
     let groupApi = GroupApi()
     let photoApi = PhotoApi()
     
-    // MARK: ViewDidLoad
-
     
+    // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async {
@@ -89,15 +46,15 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
                 self.searchingArr ()
                 self.findingArr ()
                 self.tableView.reloadData()
+                self.getPhotosForFriends()
             }
         }
         self.tableView.register(R.Cell.friendTableCell, forCellReuseIdentifier: R.Identifier.friendTableCell)
         self.searchBar.delegate = self
-       
+        
     }
     
     // MARK: Make arrs
-    
     private func makeNamesList (){
         self.friends.forEach {
             nameList.append($0.fullname)
@@ -130,17 +87,26 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Get info for cells
+    private func getPhotosForFriends () {
+        for friend in friends {
+            self.photoApi.getPhotos(for: String(friend.id)) { [weak self] friendPhotos in
+                guard let self = self else { return }
+                self.friendsPhotos = friendPhotos
+            }
+        }
+    }
     
     private func getNameForCell (_ indexPath: IndexPath) -> String {
-        //создаём пустой массив имён, для букв в каждой секции
+        //создаём пустой массив имён
         var namesOfRows = [String]()
         nameList.forEach {
-            //проходимся по всем именем в массиве имён
+            //проходимся по всем элементам в массиве первых букв и первым буквам имён в другом массиве
             if lettersList[indexPath.section].contains($0.first!) {
-                //если имя содержит букву, которая указанна в определённой секции и буква имени совпадают, то добавляем это имя в массив
+                //если буква в секции и первая буква имени совпадают, то добавляем это имя в массив
                 namesOfRows.append($0)
             }
         }
+        // возвращаем имя для определённой ячейки
         return namesOfRows[indexPath.row]
     }
     
@@ -158,19 +124,20 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    private func getPhotosFriend (_ indexPath: IndexPath) -> [UIImage?] {
-        var photos: [UIImage?] = []
-        for friend in friendsList{
-            let namesRows = getNameForCell(indexPath)
-            if friend.userName.contains(namesRows) {
-                photos.append(contentsOf: friend.userPhotos)
+    private func getPhotosFriend (_ indexPath: IndexPath) -> [Size?] {
+        var photosURL: [Size?] = []
+        for friend in friends {
+            for photo in friendsPhotos {
+                let namesRows = getNameForCell(indexPath)
+                if friend.fullname.contains(namesRows){
+                    photosURL.append(contentsOf:photo.sizes)
+                }
             }
         }
-        return photos
+        return photosURL
     }
     
     // MARK: Configure search
-    
     internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
         self.searchBar.resignFirstResponder()
         self.searchArr.removeAll()
@@ -192,8 +159,6 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Handle gesture
-    
-    // action для нажатия
     @objc func handleLongPress (_ gesture:UILongPressGestureRecognizer) {
         // если нажатие уже началось
         if gesture.state != .began {
@@ -209,10 +174,9 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
 }
-// MARK: UITableViewDataSource
 
+// MARK: UITableViewDataSource
 extension FriendViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -272,7 +236,7 @@ extension FriendViewController: UITableViewDataSource {
         header.startLocation = 0
         header.endLocation = 1
         header.addSubview(label)
-
+        
         return header
     }
     
@@ -281,40 +245,40 @@ extension FriendViewController: UITableViewDataSource {
         return 30
     }
     
+    //настройка title на header в каждой секции, НЕ РАБОТАЕТ ЕСЛИ ЕСТЬ viewForHeaderInSection
     
-     //настройка title на header в каждой секции, НЕ РАБОТАЕТ ЕСЛИ ЕСТЬ viewForHeaderInSection
+    //        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //            if searchBar.text?.isEmpty == false {
+    //                return "Founded matches \(searchArr.count)"
+    //            }
+    //            return lettersList[section]
+    //        }
     
-//        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//            if searchBar.text?.isEmpty == false {
-//                return "Founded matches \(searchArr.count)"
-//            }
-//            return lettersList[section]
-//        }
-    
-        // боковая панель с буквами
-        func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-            var indexTitleList = [String]()
-            for element in lettersList {
-                indexTitleList.append(element)
-            }
-            return indexTitleList
+    // боковая панель с буквами
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        var indexTitleList = [String]()
+        for element in lettersList {
+            indexTitleList.append(element)
         }
-        // переносит нас к букве секции
-        func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-            guard let index = lettersList.firstIndex(of: title) else { return -1 }
-            return index
-        }
+        return indexTitleList
+    }
+    // переносит нас к букве секции
+    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        guard let index = lettersList.firstIndex(of: title) else { return -1 }
+        return index
+    }
     
     
 }
-// MARK: UITableViewDelegate
 
+// MARK: UITableViewDelegate
 extension FriendViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = storyboard?.instantiateViewController(withIdentifier: "friendCollectionVC") as? FriendCollectionViewController
-        vc?.avatar = getPhotosFriend(indexPath)
+        vc?.photosURL.removeAll()
+        vc?.photosURL = getPhotosFriend(indexPath)
         self.navigationController?.pushViewController(vc!, animated: true)
         
     }

@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+
 final class FriendsApi {
     
     // MARK: - Base URL Config
@@ -48,7 +49,7 @@ final class FriendsApi {
             }
             
             guard let data = data else { return }
-            print(data.prettyJSON as Any)
+
             
             do {
                 //смешанный способ, создаём цепочку с помощью SwiftyJSON, добираемся до нужного нам объекта, получаем его rawData
@@ -62,9 +63,9 @@ final class FriendsApi {
                 print(error.localizedDescription)
             }
         }.resume()
-        
     }
-    
+}
+/*
     // MARK: - Get friends method use Codable
     func getFriends3URLSession(completion: @escaping([Friend3])->()) {
         
@@ -270,5 +271,5 @@ final class FriendsApi {
         task.resume()
     }
 }
-
+*/
 
