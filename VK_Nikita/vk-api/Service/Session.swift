@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 final class Session {
     
@@ -13,8 +14,27 @@ final class Session {
     
     static let shared = Session()
     
-    var token = ""
-    var userId = ""
+    //а token, так как он требует безопасного хранения, будем храить в Keychain
+    var token: String {
+        set {
+            KeychainWrapper.standard.set(newValue, forKey: "token")
+        }
+        get {
+            KeychainWrapper.standard.string(forKey: "token") ?? ""
+        }
+    }
+    
+    // userId будем хранить в UserDefaults
+    var userId: String {
+        set {
+            UserDefaults.standard.set(newValue, forKey: "userId")
+        }
+        get {
+            UserDefaults.standard.string(forKey: "userId") ?? ""
+        }
+    }
+    
+    var expDate = Date(timeIntervalSince1970: TimeInterval(0.0))
     
     
 }

@@ -35,7 +35,6 @@
 		1F4C83F726E50AC900617605 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C83F626E50AC900617605 /* SceneDelegate.swift */; };
 		1F4C83F926E50AC900617605 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C83F826E50AC900617605 /* ViewController.swift */; };
 		1F4C83FC26E50AC900617605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4C83FA26E50AC900617605 /* Main.storyboard */; };
-		1F4C83FF26E50AC900617605 /* VK_Nikita.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F4C83FD26E50AC900617605 /* VK_Nikita.xcdatamodeld */; };
 		1F4C840426E50ACE00617605 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F4C840226E50ACE00617605 /* LaunchScreen.storyboard */; };
 		1F5286D82702187800BA8FAC /* NewsVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F5286D72702187800BA8FAC /* NewsVC.storyboard */; };
 		1F5286DA270218A200BA8FAC /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5286D9270218A200BA8FAC /* NewsVC.swift */; };
@@ -50,6 +49,12 @@
 		1F8DDC0427284F7B003EEA79 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 1F8DDC0327284F7B003EEA79 /* SwiftyJSON */; };
 		1F8DDC0F272A8D6D003EEA79 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DDC0E272A8D6D003EEA79 /* Friend.swift */; };
 		1F8DDC1C2731320C003EEA79 /* FriendsPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DDC1B2731320B003EEA79 /* FriendsPhotos.swift */; };
+		1F8DDC202733BD77003EEA79 /* DataBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DDC1F2733BD77003EEA79 /* DataBaseVC.swift */; };
+		1F8DDC232733CE9E003EEA79 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 1F8DDC222733CE9E003EEA79 /* SwiftKeychainWrapper */; };
+		1F8DDC2B273435F9003EEA79 /* VK_Nikita.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DDC29273435F9003EEA79 /* VK_Nikita.xcdatamodeld */; };
+		1F8DDC2E273437EC003EEA79 /* Human+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DDC2C273437EB003EEA79 /* Human+CoreDataClass.swift */; };
+		1F8DDC2F273437EC003EEA79 /* Human+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DDC2D273437EC003EEA79 /* Human+CoreDataProperties.swift */; };
+		1F8DDC3527343CF4003EEA79 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1F8DDC3427343CF4003EEA79 /* RealmSwift */; };
 		1F924D57271F2DCA00502879 /* NetworkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F924D56271F2DCA00502879 /* NetworkVC.swift */; };
 		1F924D6027209DEC00502879 /* AuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F924D5F27209DEC00502879 /* AuthVC.swift */; };
 		1F924D65272439DC00502879 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F924D64272439DC00502879 /* Session.swift */; };
@@ -90,7 +95,6 @@
 		1F4C83F626E50AC900617605 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1F4C83F826E50AC900617605 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1F4C83FB26E50AC900617605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1F4C83FE26E50AC900617605 /* VK_Nikita.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VK_Nikita.xcdatamodel; sourceTree = "<group>"; };
 		1F4C840326E50ACE00617605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F4C840526E50ACE00617605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F5286D72702187800BA8FAC /* NewsVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsVC.storyboard; sourceTree = "<group>"; };
@@ -105,6 +109,10 @@
 		1F80628F271EB623006E79F7 /* TVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVC.swift; sourceTree = "<group>"; };
 		1F8DDC0E272A8D6D003EEA79 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		1F8DDC1B2731320B003EEA79 /* FriendsPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPhotos.swift; sourceTree = "<group>"; };
+		1F8DDC1F2733BD77003EEA79 /* DataBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseVC.swift; sourceTree = "<group>"; };
+		1F8DDC2A273435F9003EEA79 /* VK_Nikita.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VK_Nikita.xcdatamodel; sourceTree = "<group>"; };
+		1F8DDC2C273437EB003EEA79 /* Human+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Human+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1F8DDC2D273437EC003EEA79 /* Human+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Human+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1F924D56271F2DCA00502879 /* NetworkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVC.swift; sourceTree = "<group>"; };
 		1F924D5F27209DEC00502879 /* AuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVC.swift; sourceTree = "<group>"; };
 		1F924D64272439DC00502879 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -121,8 +129,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F8DDC3527343CF4003EEA79 /* RealmSwift in Frameworks */,
 				1F8DDC0427284F7B003EEA79 /* SwiftyJSON in Frameworks */,
 				1F3B8EEC271EE88C002E19F5 /* Alamofire in Frameworks */,
+				1F8DDC232733CE9E003EEA79 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				1F4C840226E50ACE00617605 /* LaunchScreen.storyboard */,
-				1F4C83FD26E50AC900617605 /* VK_Nikita.xcdatamodeld */,
+				1F8DDC29273435F9003EEA79 /* VK_Nikita.xcdatamodeld */,
 				1F19255226F0CC2E006EB5D6 /* Assets.xcassets */,
 				1F4C840526E50ACE00617605 /* Info.plist */,
 			);
@@ -267,9 +277,10 @@
 			children = (
 				1F80627F271D639D006E79F7 /* test */,
 				1F80627C271D61F4006E79F7 /* Lessons */,
+				1F924D6F272576B400502879 /* vk-api */,
+				1F47631C270CB15D0090B804 /* LoadVC */,
 				1F8DDC05272A8D18003EEA79 /* Auth */,
 				1F19251026EF7732006EB5D6 /* Main */,
-				1F924D6F272576B400502879 /* vk-api */,
 				1F19252126EF7BF4006EB5D6 /* Friends */,
 				1F19254326EF7E99006EB5D6 /* Groups */,
 				1F19251C26EF7B67006EB5D6 /* Tabbar */,
@@ -278,7 +289,6 @@
 				1F19251126EF7754006EB5D6 /* Delegates */,
 				1F19251226EF7782006EB5D6 /* R */,
 				1F476320270CB4C90090B804 /* Views */,
-				1F47631C270CB15D0090B804 /* LoadVC */,
 				1F8DDC07272A8D32003EEA79 /* Models */,
 				1F924D662724786B00502879 /* Layouts */,
 				1F4C83F226E50AC900617605 /* Products */,
@@ -309,6 +319,7 @@
 			children = (
 				1F924D54271F2D9300502879 /* 1 */,
 				1F924D55271F2DA100502879 /* 2 */,
+				1F8DDC1E2733BD48003EEA79 /* 3 */,
 			);
 			path = Lessons;
 			sourceTree = "<group>";
@@ -364,6 +375,16 @@
 				1F19251826EF7840006EB5D6 /* Groups.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1F8DDC1E2733BD48003EEA79 /* 3 */ = {
+			isa = PBXGroup;
+			children = (
+				1F8DDC1F2733BD77003EEA79 /* DataBaseVC.swift */,
+				1F8DDC2C273437EB003EEA79 /* Human+CoreDataClass.swift */,
+				1F8DDC2D273437EC003EEA79 /* Human+CoreDataProperties.swift */,
+			);
+			path = 3;
 			sourceTree = "<group>";
 		};
 		1F924D54271F2D9300502879 /* 1 */ = {
@@ -439,6 +460,8 @@
 			packageProductDependencies = (
 				1F3B8EEB271EE88C002E19F5 /* Alamofire */,
 				1F8DDC0327284F7B003EEA79 /* SwiftyJSON */,
+				1F8DDC222733CE9E003EEA79 /* SwiftKeychainWrapper */,
+				1F8DDC3427343CF4003EEA79 /* RealmSwift */,
 			);
 			productName = VK_Nikita;
 			productReference = 1F4C83F126E50AC900617605 /* VK_Nikita.app */;
@@ -470,6 +493,8 @@
 			packageReferences = (
 				1F3B8EEA271EE88B002E19F5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1F8DDC0227284F7B003EEA79 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				1F8DDC212733CE9E003EEA79 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				1F8DDC3327343CF4003EEA79 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 1F4C83F226E50AC900617605 /* Products */;
 			projectDirPath = "";
@@ -517,7 +542,6 @@
 				1F5286DA270218A200BA8FAC /* NewsVC.swift in Sources */,
 				1F19252526EF7D0C006EB5D6 /* FriendViewController.swift in Sources */,
 				1F4C83F526E50AC900617605 /* AppDelegate.swift in Sources */,
-				1F4C83FF26E50AC900617605 /* VK_Nikita.xcdatamodeld in Sources */,
 				1F19254126EF7E86006EB5D6 /* GroupsTableViewCell.swift in Sources */,
 				1F19251426EF779C006EB5D6 /* R.swift in Sources */,
 				1F476322270CB4E90090B804 /* GradientView.swift in Sources */,
@@ -536,14 +560,18 @@
 				1FEC4EAB271585D1009A391D /* ZoomTransitioningDelegate.swift in Sources */,
 				1F476326270DDBE30090B804 /* HeartAnimation.swift in Sources */,
 				1F8DDC0F272A8D6D003EEA79 /* Friend.swift in Sources */,
+				1F8DDC2F273437EC003EEA79 /* Human+CoreDataProperties.swift in Sources */,
 				1F19254926EF7F47006EB5D6 /* AllGroupsViewController.swift in Sources */,
 				1F19254726EF7F33006EB5D6 /* AddedGroupsViewController.swift in Sources */,
 				1F924D6027209DEC00502879 /* AuthVC.swift in Sources */,
+				1F8DDC2E273437EC003EEA79 /* Human+CoreDataClass.swift in Sources */,
 				1F19251926EF7840006EB5D6 /* Groups.swift in Sources */,
 				1F80627E271D621D006E79F7 /* Singletone.swift in Sources */,
 				1F19254F26F0B4EF006EB5D6 /* TabBarViewController.swift in Sources */,
+				1F8DDC202733BD77003EEA79 /* DataBaseVC.swift in Sources */,
 				1F924D6E2725752400502879 /* PhotoAPI.swift in Sources */,
 				1F19253D26EF7E5A006EB5D6 /* FriendsCollectionViewCell.swift in Sources */,
+				1F8DDC2B273435F9003EEA79 /* VK_Nikita.xcdatamodeld in Sources */,
 				1F806287271D6591006E79F7 /* TestVC2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -764,6 +792,22 @@
 				version = 5.0.1;
 			};
 		};
+		1F8DDC212733CE9E003EEA79 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.1;
+			};
+		};
+		1F8DDC3327343CF4003EEA79 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -777,16 +821,27 @@
 			package = 1F8DDC0227284F7B003EEA79 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
+		1F8DDC222733CE9E003EEA79 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F8DDC212733CE9E003EEA79 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+		1F8DDC3427343CF4003EEA79 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F8DDC3327343CF4003EEA79 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		1F4C83FD26E50AC900617605 /* VK_Nikita.xcdatamodeld */ = {
+		1F8DDC29273435F9003EEA79 /* VK_Nikita.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1F4C83FE26E50AC900617605 /* VK_Nikita.xcdatamodel */,
+				1F8DDC2A273435F9003EEA79 /* VK_Nikita.xcdatamodel */,
 			);
-			currentVersion = 1F4C83FE26E50AC900617605 /* VK_Nikita.xcdatamodel */;
-			path = VK_Nikita.xcdatamodeld;
+			currentVersion = 1F8DDC2A273435F9003EEA79 /* VK_Nikita.xcdatamodel */;
+			name = VK_Nikita.xcdatamodeld;
+			path = ../Models/VK_Nikita.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

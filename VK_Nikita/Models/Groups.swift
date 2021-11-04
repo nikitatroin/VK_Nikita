@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 // MARK: - Item
-struct Groups: Codable {
-    let name: String
-    let photo: String
+class Groups: Object, Codable {
+    @objc dynamic var name = ""
+    @objc dynamic var photo = ""
     
     enum CodingKeys: String, CodingKey {
         case name
