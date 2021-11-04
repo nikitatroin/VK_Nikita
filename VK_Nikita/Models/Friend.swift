@@ -6,14 +6,14 @@
 //
 
 import Foundation
-
+import RealmSwift
 
 // MARK: - Item
-struct Friend4: Codable {
-    let id: Int
-    let lastName: String
-    let firstName: String
-    let photo100: String
+class Friend4: Object, Codable {
+    @objc dynamic var id = 0
+    @objc dynamic var lastName = ""
+    @objc dynamic var firstName = ""
+    @objc dynamic var photo100 = ""
     
     var fullname: String {
         firstName + " " + lastName

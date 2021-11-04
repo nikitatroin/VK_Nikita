@@ -4,24 +4,21 @@
 //
 //  Created by Никита Троян on 02.11.2021.
 //
-
-
-
-import Foundation
 import UIKit
+import RealmSwift
 
 // MARK: - Item
-struct FriendPhotos: Codable {
-    let sizes: [Size]
-    
+class FriendPhotos: Codable {
+    var sizes: [Size] = []
+
     enum CodingKeys: String, CodingKey {
         case sizes
     }
 }
 
 // MARK: - Size
-struct Size: Codable {
-    let url: String
+class Size: Codable {
+    var url = ""
     
 
 }

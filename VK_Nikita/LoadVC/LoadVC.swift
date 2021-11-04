@@ -19,8 +19,8 @@ class LoadVC: UIViewController {
         circleAnimation2()
         circleAnimation3()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            let vc = R.Storyboard.Main.instantiateInitialViewController() as? ViewController
-                    self.navigationController?.pushViewController(vc!, animated: true)
+            let vc = R.Storyboard.Main.instantiateInitialViewController()
+            self.navigationController?.pushViewController(vc!, animated: true)
         }
         
 

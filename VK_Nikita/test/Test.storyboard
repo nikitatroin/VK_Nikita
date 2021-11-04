@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--NetworkVC-->
+        <!--Data BaseVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="NetworkVC" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="DataBaseVC" customModule="VK_Nikita" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,25 +23,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="81.696428571428569"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="AAC-mh-Oh4">
-            <objects>
-                <tableViewController id="s1o-Vs-gKq" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="eL4-cq-Do0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="s1o-Vs-gKq" id="eRm-qJ-kPb"/>
-                            <outlet property="delegate" destination="s1o-Vs-gKq" id="SGt-No-gAn"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="TR5-G2-VT4"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b5B-v1-AJN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1790" y="82"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Owm-R0-Tf9">
