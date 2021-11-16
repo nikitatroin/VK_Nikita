@@ -65,6 +65,7 @@
 		1F924D6B2725751000502879 /* GroupAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F924D6A2725751000502879 /* GroupAPI.swift */; };
 		1F924D6E2725752400502879 /* PhotoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F924D6D2725752400502879 /* PhotoAPI.swift */; };
 		1F924D722726988900502879 /* Data+PrettyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F924D712726988800502879 /* Data+PrettyJSON.swift */; };
+		1FBEA7372743CA130082AFBF /* UIImageView + Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBEA7362743CA130082AFBF /* UIImageView + Load.swift */; };
 		1FEC4EAB271585D1009A391D /* ZoomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC4EAA271585D1009A391D /* ZoomTransitioningDelegate.swift */; };
 		1FEC4EAD2715AB97009A391D /* DetailPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC4EAC2715AB97009A391D /* DetailPhotoVC.swift */; };
 /* End PBXBuildFile section */
@@ -126,6 +127,7 @@
 		1F924D6A2725751000502879 /* GroupAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAPI.swift; sourceTree = "<group>"; };
 		1F924D6D2725752400502879 /* PhotoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPI.swift; sourceTree = "<group>"; };
 		1F924D712726988800502879 /* Data+PrettyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+PrettyJSON.swift"; sourceTree = "<group>"; };
+		1FBEA7362743CA130082AFBF /* UIImageView + Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Load.swift"; sourceTree = "<group>"; };
 		1FEC4EAA271585D1009A391D /* ZoomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomTransitioningDelegate.swift; sourceTree = "<group>"; };
 		1FEC4EAC2715AB97009A391D /* DetailPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -421,7 +423,7 @@
 			path = 2;
 			sourceTree = "<group>";
 		};
-		1F924D63272439B000502879 /* Service */ = {
+		1F924D63272439B000502879 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				1F924D64272439DC00502879 /* Session.swift */,
@@ -430,7 +432,7 @@
 				1F924D6D2725752400502879 /* PhotoAPI.swift */,
 				1F5CA368273E54FD00EE429A /* RealmService.swift */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		1F924D662724786B00502879 /* Layouts */ = {
@@ -444,18 +446,19 @@
 		1F924D6F272576B400502879 /* vk-api */ = {
 			isa = PBXGroup;
 			children = (
-				1F924D702726985600502879 /* Helpers */,
-				1F924D63272439B000502879 /* Service */,
+				1F924D702726985600502879 /* Extension */,
+				1F924D63272439B000502879 /* Services */,
 			);
 			path = "vk-api";
 			sourceTree = "<group>";
 		};
-		1F924D702726985600502879 /* Helpers */ = {
+		1F924D702726985600502879 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				1F924D712726988800502879 /* Data+PrettyJSON.swift */,
+				1FBEA7362743CA130082AFBF /* UIImageView + Load.swift */,
 			);
-			path = Helpers;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,6 +555,7 @@
 				1F5CA364273D1EF300EE429A /* RealmViewController.swift in Sources */,
 				1F924D6B2725751000502879 /* GroupAPI.swift in Sources */,
 				1F4C83F926E50AC900617605 /* ViewController.swift in Sources */,
+				1FBEA7372743CA130082AFBF /* UIImageView + Load.swift in Sources */,
 				1F19252726EF7D38006EB5D6 /* FriendCollectionViewController.swift in Sources */,
 				1F5286DF27022A3900BA8FAC /* NewsCell.swift in Sources */,
 				1F19252F26EF7DA1006EB5D6 /* FriendsTableViewCell.swift in Sources */,

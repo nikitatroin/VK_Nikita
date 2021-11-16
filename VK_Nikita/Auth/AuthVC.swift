@@ -27,13 +27,13 @@ class AuthVC: UIViewController, WKNavigationDelegate {
         // проверка на валидатность tokena, мы получаем ответ в миллисекундах, их нужно перевести в дату(то есть сегодняшняя дата + 1 день), до которой есть доступ к серверу, сохранить это значение и сравнить наступила ли эта да или нет, если да, сбрасываем дату, ставим новый token и ставим новую дату.
         
         
-        if !Session.shared.token.isEmpty, !Session.shared.userId.isEmpty {
-            let vc = R.Storyboard.Tabbar.instantiateInitialViewController()
-            if let vc = vc as? TabBarViewController {
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true)
-            }
-        }
+//        if !Session.shared.token.isEmpty, !Session.shared.userId.isEmpty {
+//            let vc = R.Storyboard.Tabbar.instantiateInitialViewController()
+//            if let vc = vc as? TabBarViewController {
+//                vc.modalPresentationStyle = .fullScreen
+//                self.present(vc, animated: true)
+//            }
+//        }
         
         
         loadWebView()

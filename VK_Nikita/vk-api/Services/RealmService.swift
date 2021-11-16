@@ -8,11 +8,9 @@
 import UIKit
 import RealmSwift
 
-// для сервисов принято создавать интерфейсы - протоколы, где будут объявлены основные функции
-
 protocol RealmServiceProtocol {
-    //расписываем все действия нашего сервиса, то есть C-R-U-D
-    func create<T: Object>(_ item: T) -> Object
+
+    func save<T: Object>(_ item: [T])
     func read<T:Object>(_ type:T.Type) -> Results<T>
     func readArray<T:Object>(_ type: T.Type) -> Array<T>
     func deleteBy<T: Object>(name:String, type: T.Type)
@@ -20,30 +18,35 @@ protocol RealmServiceProtocol {
 }
 
 class RealmServiceImpl: RealmServiceProtocol {
-    let config = Realm.Configuration(schemaVersion: 9)
-    lazy var mainRealm = try! Realm(configuration: config)
+//    let config = Realm.Configuration(schemaVersion: 9)
+//    lazy var mainRealm = try! Realm(configuration: config)
+    // общая конфигурация для всех Realm'ов, которые мы будем доставать из методов ниже:
+    init() {
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 9)
+    }
     
     // MARK: - Create
-    func create<T: Object> (_ item: T ) -> Object {
+    func save<T: Object> (_ item: [T] ) {
+        let mainRealm = try! Realm()
         do {
             try mainRealm.write {
                 mainRealm.add(item)
             }
-            return item
         } catch {
             print(error.localizedDescription)
         }
-        return item
     }
     
     // MARK: - Read
     func read<T:Object>(_ type: T.Type) -> Results<T> {
+        let mainRealm = try! Realm()
         let models = mainRealm.objects(type)
         print(mainRealm.configuration.fileURL as Any)
         return models
     }
     
     func readArray<T:Object>(_ type: T.Type) -> Array<T> {
+        let mainRealm = try! Realm()
         let models = mainRealm.objects(type)
         print(mainRealm.configuration.fileURL as Any)
         return Array(models)
@@ -52,12 +55,13 @@ class RealmServiceImpl: RealmServiceProtocol {
     
     // MARK: - Delete
     func deleteBy<T:Object>(name: String, type: T.Type) {
+        let mainRealm = try! Realm()
         do {
             let models = mainRealm.objects(T.self)
-            mainRealm.beginWrite()
+            try mainRealm.write {
             guard let obj = models.filter("name == %@", name).first else { return }
             mainRealm.delete(obj)
-            try mainRealm.commitWrite()
+            }
             print(Array(models))
         } catch {
             print(error.localizedDescription)
@@ -66,6 +70,7 @@ class RealmServiceImpl: RealmServiceProtocol {
     
     // MARK: - Update
     func updateValue<T:Object>(type:T.Type, property: String, oldValue: Any, newValue: Any) {
+        let mainRealm = try! Realm()
         guard let obj = read(type).filter("\(property) == %@", oldValue).first else { return }
         do {
             try mainRealm.write{
@@ -76,7 +81,8 @@ class RealmServiceImpl: RealmServiceProtocol {
         }
     }
     
-    func updateAndModifyBy (_ type:[FriendModel], id: Int) {
+    func updateAndModifyBy(_ type:[FriendModel], id: Int) {
+        let mainRealm = try! Realm()
         do {
             try mainRealm.write{
                 print(mainRealm.configuration.fileURL as Any)

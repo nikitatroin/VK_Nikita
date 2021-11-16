@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
-class FriendViewController: UIViewController, UITextFieldDelegate {
+final class FriendViewController: UIViewController, UITextFieldDelegate {
     
-    // MARK: Outlets
+    // MARK: - Outlets
     @IBOutlet weak var searchBar: UITextField!
     
     @IBOutlet private weak var tableView: UITableView!
@@ -20,8 +21,9 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
-    // MARK: Data
+    // MARK: - Data
     var friends: [FriendModel] = []
+    var friendsRealm: Results<FriendModel>?
     var friendsPhotos: [FriendPhotos] = []
     var nameList: [String] = []
     var lettersList: [String] = []
@@ -34,32 +36,55 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     let photoApi = PhotoApi()
     let realmService = RealmServiceImpl()
     
+    // MARK: - Token
+    private var token: NotificationToken?
     
-    // MARK: ViewDidLoad
+    
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.global().async {
             self.friendsApi.getFriends4URLSession { [weak self] in
+                
                 guard let self = self else { return }
-                self.friends = self.realmService.readArray(FriendModel.self)
+                self.friendsRealm = self.realmService.read(FriendModel.self)
+                guard let friendsRealm = self.friendsRealm else {return}
+                self.friends = Array(friendsRealm)
                 self.makeNamesList()
                 self.makeLettersList()
                 self.searchingArr ()
                 self.findingArr ()
-                DispatchQueue.main.async {
-                self.tableView.reloadData()
                 self.getPhotosForFriends()
+                DispatchQueue.main.async {
+                    self.token = self.friendsRealm?.observe{ [weak self] changes in
+                        guard let tableView = self?.tableView else { return }
+                        switch changes {
+                        case .initial:
+                            tableView.reloadData()
+                        case .update(_, let deletions, let insertions, let modifications):
+                            tableView.beginUpdates()
+                            tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                                 with: .automatic)
+                            tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                                 with: .automatic)
+                            tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                                 with: .automatic)
+                            tableView.endUpdates()
+                        case .error(let error):
+                            fatalError("\(error)")
+                        }
+                    }
                 }
             }
         }
+        
         self.tableView.register(R.Cell.friendTableCell, forCellReuseIdentifier: R.Identifier.friendTableCell)
         self.searchBar.delegate = self
         
     }
     
     
-    
-    // MARK: Make arrs
+    // MARK: - Make arrs
     private func makeNamesList (){
         self.friends.forEach {
             nameList.append($0.fullname)
@@ -91,9 +116,10 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: Get info for cells
+    // MARK: - Get info for cells
     
     //выполняем запрос, получаем от сервера все фото из профиля всех одного друга, а потом переходим к другому другу и перекрываем одни фото другими, вот в чём проблема
+    // можно создать словарь, где ключ это fullname - значение это массив фото
     private func getPhotosForFriends () {
         for friend in friends {
             self.photoApi.getPhotos(for: String(friend.id)) { [weak self] friendPhotos in
@@ -147,7 +173,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     
- 
+    
     
     // MARK: Configure search
     internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
