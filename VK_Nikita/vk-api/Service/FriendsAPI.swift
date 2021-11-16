@@ -15,9 +15,10 @@ final class FriendsApi {
     // MARK: - Base URL Config
     let baseUrl = "https://api.vk.com/method"
     let version = "5.81"
+    let realmService = RealmServiceImpl()
     
     // MARK: - Get friends method use Codable + SwiftyJSON
-    func getFriends4URLSession(completion: @escaping([Friend4])->()) {
+    func getFriends4URLSession(completion: @escaping()->()) {
         
         let token = Session.shared.token
         let userId = Session.shared.userId
@@ -52,12 +53,14 @@ final class FriendsApi {
 
             
             do {
-                //смешанный способ, создаём цепочку с помощью SwiftyJSON, добираемся до нужного нам объекта, получаем его rawData
                 let items = try JSON(data)["response"]["items"].rawData()
-                // затем, чтобы работать с ним, используем Decoder, type - наша структура (важно заметить в виде массива, получаем Dat'у из SwiftyJSON)
-                let friends =  try JSONDecoder().decode([Friend4].self, from: items)
+                let friends =  try JSONDecoder().decode([FriendModel].self, from: items)
                 DispatchQueue.main.async {
-                    completion(friends)
+                    friends.forEach { friend in
+                        self.realmService.updateAndModifyBy(friends, id: friend.id)
+                    }
+                    
+                    completion()
                 }
             } catch {
                 print(error.localizedDescription)

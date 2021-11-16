@@ -32,7 +32,7 @@ final class PhotoApi {
             URLQueryItem(name: "extended", value: "0"),
             URLQueryItem(name: "album_id", value: "profile"),
             URLQueryItem(name: "offset", value: "1"),
-            URLQueryItem(name: "count", value: "1"),
+            URLQueryItem(name: "count", value: "10"),
             URLQueryItem(name: "photo_sizes", value: "0"),
             URLQueryItem(name: "v", value: version)
             

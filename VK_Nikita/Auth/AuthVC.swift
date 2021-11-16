@@ -25,6 +25,8 @@ class AuthVC: UIViewController, WKNavigationDelegate {
         // чтобы каждый раз не запрашивать token, можем при загрузки view проверять сохранён ли у нас текущий token (и не протух ли он), проверяем userId и сразу заходим в приложение
         // Session.shared.expDate.compare(Date()) == .orderedDescending
         // проверка на валидатность tokena, мы получаем ответ в миллисекундах, их нужно перевести в дату(то есть сегодняшняя дата + 1 день), до которой есть доступ к серверу, сохранить это значение и сравнить наступила ли эта да или нет, если да, сбрасываем дату, ставим новый token и ставим новую дату.
+        
+        
         if !Session.shared.token.isEmpty, !Session.shared.userId.isEmpty {
             let vc = R.Storyboard.Tabbar.instantiateInitialViewController()
             if let vc = vc as? TabBarViewController {
@@ -32,6 +34,8 @@ class AuthVC: UIViewController, WKNavigationDelegate {
                 self.present(vc, animated: true)
             }
         }
+        
+        
         loadWebView()
     }
     //разобрали запрос на компоненты, протокол, хост, путь и параметры, чтобы получить token с правом доступа к пользовательским данным
@@ -84,9 +88,9 @@ class AuthVC: UIViewController, WKNavigationDelegate {
             }
         //проверяем url на наличие токена
         guard let token = params["access_token"], let userId = params["user_id"], let expDate = params["expires_in"] else {return}
-//        print(token)
-//        print(userId)
-//        print(expDate)
+        print(token)
+        print(userId)
+        print(expDate)
         
         //совершаем переход на tableView
         //performSegue(withIdentifier: "showFriendSegua", sender: nil)
