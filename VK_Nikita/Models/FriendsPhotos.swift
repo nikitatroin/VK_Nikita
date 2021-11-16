@@ -10,6 +10,8 @@ import RealmSwift
 // MARK: - Item
 class FriendPhotos: Codable {
     var sizes: [Size] = []
+    
+    lazy var mediumPhoto:String = sizes[2].url
 
     enum CodingKeys: String, CodingKey {
         case sizes
@@ -17,8 +19,8 @@ class FriendPhotos: Codable {
 }
 
 // MARK: - Size
-class Size: Codable {
-    var url = ""
+class Size: Object, Codable {
+    @objc dynamic var url = ""
     
 
 }

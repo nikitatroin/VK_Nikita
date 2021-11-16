@@ -8,8 +8,7 @@
 import Foundation
 import RealmSwift
 
-// MARK: - Item
-class Friend4: Object, Codable {
+class FriendModel: Object, Codable {
     @objc dynamic var id = 0
     @objc dynamic var lastName = ""
     @objc dynamic var firstName = ""
@@ -18,8 +17,11 @@ class Friend4: Object, Codable {
     var fullname: String {
         firstName + " " + lastName
     }
-
-    // CodingKey используется, когда имя в JSON не подходит нам для структуры, даже если мы меняем одно название в enum'е, то мы всё равно должны перечислить все наши имена, но не стоит забывать прописать String.
+    
+    override class func primaryKey() -> String? {
+        "id"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id
         case lastName = "last_name"

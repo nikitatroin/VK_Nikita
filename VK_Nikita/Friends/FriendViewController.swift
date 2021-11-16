@@ -21,7 +21,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Data
-    var friends: [Friend4] = []
+    var friends: [FriendModel] = []
     var friendsPhotos: [FriendPhotos] = []
     var nameList: [String] = []
     var lettersList: [String] = []
@@ -32,27 +32,32 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     let friendsApi = FriendsApi()
     let groupApi = GroupApi()
     let photoApi = PhotoApi()
+    let realmService = RealmServiceImpl()
     
     
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.friendsApi.getFriends4URLSession { [weak self] friends in
+        DispatchQueue.global().async {
+            self.friendsApi.getFriends4URLSession { [weak self] in
                 guard let self = self else { return }
-                self.friends = friends
+                self.friends = self.realmService.readArray(FriendModel.self)
                 self.makeNamesList()
                 self.makeLettersList()
                 self.searchingArr ()
                 self.findingArr ()
+                DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.getPhotosForFriends()
+                }
             }
         }
         self.tableView.register(R.Cell.friendTableCell, forCellReuseIdentifier: R.Identifier.friendTableCell)
         self.searchBar.delegate = self
         
     }
+    
+    
     
     // MARK: Make arrs
     private func makeNamesList (){
@@ -87,6 +92,8 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Get info for cells
+    
+    //выполняем запрос, получаем от сервера все фото из профиля всех одного друга, а потом переходим к другому другу и перекрываем одни фото другими, вот в чём проблема
     private func getPhotosForFriends () {
         for friend in friends {
             self.photoApi.getPhotos(for: String(friend.id)) { [weak self] friendPhotos in
@@ -96,6 +103,21 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // метод, который из нашего контейнера с фото (10шт), достаёт из каждого size ( где хранятся много url), каждую вторую
+    private func getPhotosFriend (_ indexPath: IndexPath) -> [Size?] {
+        var photosURL: [Size?] = []
+        for friend in friends {
+            for photo in friendsPhotos {
+                let namesRows = getNameForCell(indexPath)
+                if friend.fullname.contains(namesRows){
+                    photosURL.append(photo.sizes[2])
+                }
+            }
+        }
+        return photosURL
+    }
+    
+    // получаем имена для ячеек
     private func getNameForCell (_ indexPath: IndexPath) -> String {
         //создаём пустой массив имён
         var namesOfRows = [String]()
@@ -110,6 +132,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
         return namesOfRows[indexPath.row]
     }
     
+    // получаем маленькую фотку
     private func getUserAvatarForCell (_ indexPath: IndexPath) -> UIImage? {
         for friend in friends {
             let namesRows = getNameForCell(indexPath)
@@ -124,18 +147,7 @@ class FriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    private func getPhotosFriend (_ indexPath: IndexPath) -> [Size?] {
-        var photosURL: [Size?] = []
-        for friend in friends {
-            for photo in friendsPhotos {
-                let namesRows = getNameForCell(indexPath)
-                if friend.fullname.contains(namesRows){
-                    photosURL.append(contentsOf:photo.sizes)
-                }
-            }
-        }
-        return photosURL
-    }
+ 
     
     // MARK: Configure search
     internal func textFieldShouldClear(_ textField: UITextField) -> Bool {

@@ -16,7 +16,7 @@ class FriendCollectionViewController: UIViewController {
     var selcetedIndexPath:IndexPath!
     
     private var layout = CollectionViewCustomLayout()
-    
+
     override func viewDidLoad() {
         self.photos = convertURLtoImage()
         super.viewDidLoad()

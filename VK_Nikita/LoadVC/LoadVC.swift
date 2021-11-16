@@ -19,8 +19,10 @@ class LoadVC: UIViewController {
         circleAnimation2()
         circleAnimation3()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            let vc = R.Storyboard.Main.instantiateInitialViewController()
-            self.navigationController?.pushViewController(vc!, animated: true)
+            if let vc = R.Storyboard.Main.instantiateInitialViewController() {
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
+            }
         }
         
 
