@@ -41,7 +41,7 @@ final class FriendsApi {
         guard let myURL = components.url else { return }
         
         var request = URLRequest(url: myURL)
-        request.httpMethod = "GET"
+        request.method = .get
         
         session.dataTask(with: request) { data, response, error in
             
