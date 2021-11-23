@@ -9,6 +9,8 @@ import UIKit
 //импортируем библиотеку для работы с WebView
 import WebKit
 import Alamofire
+import Firebase
+import FirebaseDatabase
 
 //класс conform WKNavigationDelegate
 class AuthVC: UIViewController, WKNavigationDelegate {
@@ -18,6 +20,8 @@ class AuthVC: UIViewController, WKNavigationDelegate {
             webView.navigationDelegate = self
         }
     }
+    private var firebaseService = FirebaseServiceImpl()
+    private var ref = Database.database().reference(withPath: "users")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +92,9 @@ class AuthVC: UIViewController, WKNavigationDelegate {
             }
         //проверяем url на наличие токена
         guard let token = params["access_token"], let userId = params["user_id"], let expDate = params["expires_in"] else {return}
+        
+        firebaseService.saveDataFor(userId, andGroups: nil)
+        
         print(token)
         print(userId)
         print(expDate)

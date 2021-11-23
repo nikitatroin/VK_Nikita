@@ -52,33 +52,33 @@ class DataBaseVC: UIViewController {
     }
     
 // MARK: - CoreData
-    func useCoreData() {
-        //обращаемся к appDelegate, через Singleton, потом за downcasting'ли его в нужный нам класс AppDelegate, чтобы обратиться к нашему контейнеру
-        
-        // context это база данных, которая находится в оперативной памяти, через неё мы делаем запросы, она постоянно весит в памяти, также она может синхронизироваться с основной базой
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        //первый шаг, загрузили объект в БД
-        let newHuman = Human(context: context)
-        newHuman.name = "Nikita"
-        newHuman.gender = true
-        newHuman.birthday = Date()
-        // сохранили в оперативную память, также можно настроить, чтобы перед закрытием приложения context сохранялся
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        
-        
-        //второй шаг, выгружаем объект из БД
-        do {
-            let result = try context.fetch(Human.fetchRequest())
-            
-            if let human = result.first {
-                print(human)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+//    func useCoreData() {
+//        //обращаемся к appDelegate, через Singleton, потом за downcasting'ли его в нужный нам класс AppDelegate, чтобы обратиться к нашему контейнеру
+//        
+//        // context это база данных, которая находится в оперативной памяти, через неё мы делаем запросы, она постоянно весит в памяти, также она может синхронизироваться с основной базой
+//        
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        
+//        //первый шаг, загрузили объект в БД
+//        let newHuman = Human(context: context)
+//        newHuman.name = "Nikita"
+//        newHuman.gender = true
+//        newHuman.birthday = Date()
+//        // сохранили в оперативную память, также можно настроить, чтобы перед закрытием приложения context сохранялся
+//        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//        
+//        
+//        //второй шаг, выгружаем объект из БД
+//        do {
+//            let result = try context.fetch(Human.fetchRequest())
+//            
+//            if let human = result.first {
+//                print(human)
+//            }
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
     
     
 // MARK: - Realm

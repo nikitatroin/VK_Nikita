@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Firebase
 
 class AddedGroupsViewController: UIViewController {
     
+    let firebaseService = FirebaseServiceImpl()
+    
     @IBOutlet weak var tableVIew: UITableView!
     
+    // MARK: - TODO
     @IBAction func segua (_ segua:UIStoryboardSegue) {
         if segua.identifier == "addGroup" {
             let vc = segua.source as! AllGroupsViewController
@@ -60,6 +64,12 @@ extension AddedGroupsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let id = Session.shared.userId
+        var groupsString:[String] = []
+        displayItem.forEach{groupsString.append($0.name)}
+        firebaseService.saveDataFor(id, andGroups: groupsString)
+        
         return tableView.dequeueReusableCell(withIdentifier: R.Identifier.groupsTableCell, for: indexPath)
     }
 }
@@ -77,6 +87,5 @@ extension AddedGroupsViewController: UITableViewDelegate {
             tableView.reloadData()
         }
     }
-    
 }
 

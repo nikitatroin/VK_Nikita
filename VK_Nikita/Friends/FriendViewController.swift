@@ -24,6 +24,7 @@ final class FriendViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Data
     var friends: [FriendModel] = []
     var friendsRealm: Results<FriendModel>?
+    //поменять или добавить конвертор для нижнего массива в [String: Any]
     var friendsPhotos: [FriendPhotos] = []
     var nameList: [String] = []
     var lettersList: [String] = []
@@ -45,7 +46,6 @@ final class FriendViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         DispatchQueue.global().async {
             self.friendsApi.getFriends4URLSession { [weak self] in
-                
                 guard let self = self else { return }
                 self.friendsRealm = self.realmService.read(FriendModel.self)
                 guard let friendsRealm = self.friendsRealm else {return}
@@ -116,11 +116,14 @@ final class FriendViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: - Get info for cells
+  
     
+    //MARK: - Get Photos methods
     //выполняем запрос, получаем от сервера все фото из профиля всех одного друга, а потом переходим к другому другу и перекрываем одни фото другими, вот в чём проблема
-    // можно создать словарь, где ключ это fullname - значение это массив фото
-    private func getPhotosForFriends () {
+    
+    // 1) можно создать словарь, где ключ это fullname - значение это массив фото
+    // 2) Делаем проверку имени, мы нажали на ячейку, находим нужного друга, подтяниваем его id и уже по конкретному id получаем фото
+    private func getPhotosForFriends() {
         for friend in friends {
             self.photoApi.getPhotos(for: String(friend.id)) { [weak self] friendPhotos in
                 guard let self = self else { return }
@@ -142,7 +145,7 @@ final class FriendViewController: UIViewController, UITextFieldDelegate {
         }
         return photosURL
     }
-    
+    // MARK: - Get info for cells
     // получаем имена для ячеек
     private func getNameForCell (_ indexPath: IndexPath) -> String {
         //создаём пустой массив имён
@@ -171,9 +174,6 @@ final class FriendViewController: UIViewController, UITextFieldDelegate {
         }
         return nil
     }
-    
-    
-    
     
     // MARK: Configure search
     internal func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -332,7 +332,14 @@ extension FriendViewController: UITableViewDelegate {
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
         }
-        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            friends.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+        }
     }
 }
 
