@@ -8,10 +8,21 @@
 import UIKit
 
 class NewsCell: UICollectionViewCell {
+    
+    let newsService = NewsApi()
+    var response:[NewsItem] = []
+    
     //если кастомизируем собственную View(в том числе и cell, настройки производим в init)
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        newsService.getNews { response in
+            if let response = response {
+            self.response = response
+            self.statusTextView.text = self.response[0].text
+            }
+        }
+        
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +62,7 @@ class NewsCell: UICollectionViewCell {
     }
     let statusTextView: UITextView = {
         let textView = UITextView()
-        textView.text = "Исаа́киевский собо́р — крупнейший православный храм Санкт-Петербурга. Расположен на Исаакиевской площади."
+        textView.text = ""
         textView.font = UIFont.systemFont(ofSize: 14)
         
         return textView
@@ -117,10 +128,12 @@ class NewsCell: UICollectionViewCell {
         return lable
     }()
     
+    //создание кнопок
     let likeButton = NewsCell.setButton(title: "Like", view: "hand.thumbsup")
     let commentButton = NewsCell.setButton(title: "Comment", view: "message")
     let shareButton = NewsCell.setButton(title: "Share", view: "arrowshape.turn.up.forward")
     
+    //кнопка по умолчанию
     static func setButton (title:String, view:String) -> UIButton {
         let button = UIButton()
         button.setTitle(title, for: .normal)
@@ -132,9 +145,7 @@ class NewsCell: UICollectionViewCell {
     }
     
 }
-
-
-
+// расширение для Visual Format
 extension UIView {
     // создаём расширение для UIView, добавляем функцию, в ней первый элемент это VisualFormat, второе это массив всех View
     func addConstWithFormat(format: String, views: UIView...) {

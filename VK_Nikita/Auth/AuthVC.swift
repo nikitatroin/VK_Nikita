@@ -52,7 +52,7 @@ class AuthVC: UIViewController, WKNavigationDelegate {
             URLQueryItem(name: "client_id", value: "7981067"),// id созданного приложение через VK
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: "262150"), // права приложения, к каким папкам он будет иметь доступ
+            URLQueryItem(name: "scope", value: "friends,photos,audio,video,wall,groups"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: "5.81"),
             URLQueryItem(name: "revoke", value: "1")// полезная фича для деббага

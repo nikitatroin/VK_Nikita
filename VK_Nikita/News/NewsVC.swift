@@ -7,13 +7,14 @@
 
 import UIKit
 
-class NewsVC: UIViewController, UICollectionViewDelegateFlowLayout {
+final class NewsVC: UIViewController, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.navigationItem.title = "News"
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.navigationBar.backgroundColor = UIColor(white: 0.95, alpha: 1)
