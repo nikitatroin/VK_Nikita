@@ -1,17 +1,21 @@
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let news = try? newJSONDecoder().decode(News.self, from: jsonData)
 
 import Foundation
 
-// MARK: - NewsModel
-struct NewsModel: Codable {
-    let response: NewsResponse
+// MARK: - News
+struct News: Codable {
+    let response: Response?
 }
 
 // MARK: - Response
-struct NewsResponse: Codable {
-    let items: [NewsItem]
-    let groups: [Group]
-    let profiles: [Profile]
-    let nextFrom: String
+struct Response: Codable {
+    let items: [Item]?
+    let groups: [Group]?
+    let profiles: [Profile]?
+    let nextFrom: String?
 
     enum CodingKeys: String, CodingKey {
         case items, groups, profiles
@@ -21,14 +25,19 @@ struct NewsResponse: Codable {
 
 // MARK: - Group
 struct Group: Codable {
-    let id: Int
-    let photo100, photo50, photo200: String
+    let isMember, id: Int
+    let photo100: String
+    let isAdvertiser, isAdmin: Int
+    let photo50, photo200: String
     let type, screenName, name: String
     let isClosed: Int
 
     enum CodingKeys: String, CodingKey {
+        case isMember = "is_member"
         case id
         case photo100 = "photo_100"
+        case isAdvertiser = "is_advertiser"
+        case isAdmin = "is_admin"
         case photo50 = "photo_50"
         case photo200 = "photo_200"
         case type
@@ -39,17 +48,17 @@ struct Group: Codable {
 }
 
 // MARK: - Item
-struct NewsItem: Codable {
-    let comments: NewsComments
+struct Item: Codable {
+    let comments: Comments
     let canSetCategory: Bool
-    let likes: NewsLikes
-    let reposts: NewsReposts
+    let likes: Likes
+    let reposts: Reposts
     let type, postType: String
     let date, sourceID: Int
     let text: String
     let canDoubtCategory: Bool
     let attachments: [Attachment]
-    let markedAsAds, postID: Int
+    let markedAsAds, postID, signerID: Int
     let postSource: PostSource
     let views: Views
 
@@ -65,6 +74,7 @@ struct NewsItem: Codable {
         case attachments
         case markedAsAds = "marked_as_ads"
         case postID = "post_id"
+        case signerID = "signer_id"
         case postSource = "post_source"
         case views
     }
@@ -72,32 +82,43 @@ struct NewsItem: Codable {
 
 // MARK: - Attachment
 struct Attachment: Codable {
-    let type: String
-    let link: Link
+    let type: TypeEnum
+    let photo: Photo?
+    let audio: Audio?
 }
 
-// MARK: - Link
-struct Link: Codable {
-    let title, caption: String
+// MARK: - Audio
+struct Audio: Codable {
+    let artist: String
+    let id: Int
+    let shortVideosAllowed: Bool
+    let title: String
+    let date, duration: Int
+    let isHq, storiesAllowed, storiesCoverAllowed: Bool
+    let ownerID: Int
     let url: String
-    let linkDescription: String
-    let photo: NewsPhoto
 
     enum CodingKeys: String, CodingKey {
-        case title, caption, url
-        case linkDescription = "description"
-        case photo
+        case artist, id
+        case shortVideosAllowed = "short_videos_allowed"
+        case title, date, duration
+        case isHq = "is_hq"
+        case storiesAllowed = "stories_allowed"
+        case storiesCoverAllowed = "stories_cover_allowed"
+        case ownerID = "owner_id"
+        case url
     }
 }
 
 // MARK: - Photo
-struct NewsPhoto: Codable {
+struct Photo: Codable {
     let albumID, id, date: Int
     let text: String
     let userID: Int
-    let sizes: [NewsSize]
+    let sizes: [Sizes]
     let hasTags: Bool
     let ownerID: Int
+    let accessKey: String
 
     enum CodingKeys: String, CodingKey {
         case albumID = "album_id"
@@ -106,18 +127,24 @@ struct NewsPhoto: Codable {
         case sizes
         case hasTags = "has_tags"
         case ownerID = "owner_id"
+        case accessKey = "access_key"
     }
 }
 
 // MARK: - Size
-struct NewsSize: Codable {
+struct Sizes: Codable {
     let width, height: Int
     let url: String
     let type: String
 }
 
+enum TypeEnum: String, Codable {
+    case audio = "audio"
+    case photo = "photo"
+}
+
 // MARK: - Comments
-struct NewsComments: Codable {
+struct Comments: Codable {
     let count, canPost: Int
     let groupsCanPost: Bool
 
@@ -129,7 +156,7 @@ struct NewsComments: Codable {
 }
 
 // MARK: - Likes
-struct NewsLikes: Codable {
+struct Likes: Codable {
     let canLike, canPublish, count, userLikes: Int
 
     enum CodingKeys: String, CodingKey {
@@ -146,7 +173,7 @@ struct PostSource: Codable {
 }
 
 // MARK: - Reposts
-struct NewsReposts: Codable {
+struct Reposts: Codable {
     let count, userReposted: Int
 
     enum CodingKeys: String, CodingKey {
@@ -185,10 +212,12 @@ struct Profile: Codable {
 // MARK: - OnlineInfo
 struct OnlineInfo: Codable {
     let visible, isMobile, isOnline: Bool
+    let lastSeen: Int?
 
     enum CodingKeys: String, CodingKey {
         case visible
         case isMobile = "is_mobile"
         case isOnline = "is_online"
+        case lastSeen = "last_seen"
     }
 }
