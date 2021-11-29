@@ -15,7 +15,7 @@ final class NewsApi {
     let version = "5.81"
     
     // MARK: - Get groups method
-    func getNews(completion: @escaping ([NewsItem]?)->() ) {
+    func getNews(completion: @escaping (Result<[Item]?, NSError>)->() ) {
         
         let token = Session.shared.token
         let userId = Session.shared.userId
@@ -29,32 +29,51 @@ final class NewsApi {
         components.queryItems = [
             URLQueryItem(name: "access_token", value: token),
             URLQueryItem(name: "userId", value: userId),
-            URLQueryItem(name: "filters", value: "post, wall_photo, audio, video"),
-            URLQueryItem(name: "count", value: "10"),
+            URLQueryItem(name: "filters", value: "post"),
+            URLQueryItem(name: "count", value: "1"),
             URLQueryItem(name: "v", value: version),
-            URLQueryItem(name: "max_photos", value: "10"),
+            URLQueryItem(name: "max_photos", value: "1"),
         ]
         
         guard let myURL = components.url else { return }
         
         var request = URLRequest(url: myURL)
         request.method = .get
+        //debugPrint(myURL as Any)
         
         let task = session.dataTask(with: request) { data, response, error in
             if error != nil {
                 print(error as Any)
             }
+            
+            if let response = response as? HTTPURLResponse, response.statusCode >= 300 {
+                print(response)
+            }
+                
             guard let data = data else { return }
             debugPrint(data.prettyJSON as Any)
             
             do {
-                let newsResponse = try JSONDecoder().decode(NewsModel.self, from: data)
-                let news = newsResponse.response.items
-                completion(news)
+                let newsResponse = try JSONDecoder().decode(News.self, from: data)
+                let items = newsResponse.response?.items
+                completion(.success(items))
             } catch {
                 print(error.localizedDescription)
             }
         }
         task.resume()
     }
+    
+    //универсальный метод
+    func fetchData<T: Decodable>(url: String, responseClass: T.Type , completion:@escaping (Result<T?, NSError>) -> Void) {
+            AF.request(url, method: .get, parameters: [:], headers: [:]).responseJSON { (response) in
+                guard let statusCode = response.response?.statusCode else { return }
+                if statusCode == 200 { // Success
+                    guard let jsonResponse = try? response.result.get() else { return }
+                    guard let theJSONData = try? JSONSerialization.data(withJSONObject: jsonResponse, options: []) else { return }
+                    guard let responseObj = try? JSONDecoder().decode(T.self, from: theJSONData) else { return }
+                    completion(.success(responseObj))
+                }
+            }
+        }
 }

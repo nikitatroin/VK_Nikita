@@ -10,19 +10,24 @@ import UIKit
 class NewsCell: UICollectionViewCell {
     
     let newsService = NewsApi()
-    var response:[NewsItem] = []
+//    var response:[Item] = []
     
     //если кастомизируем собственную View(в том числе и cell, настройки производим в init)
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        newsService.getNews { response in
-            if let response = response {
-            self.response = response
-            self.statusTextView.text = self.response[0].text
-            }
-        }
-        
+//        DispatchQueue.main.async {
+//            self.newsService.getNews { (response) in
+//                switch response {
+//                case .success(let items):
+//                    if let items = items {
+//                        self.response = items
+//                    }
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -58,11 +63,11 @@ class NewsCell: UICollectionViewCell {
         addConstWithFormat(format: "V:[v0(30)]|", views: commentButton)
         addConstWithFormat(format: "V:[v0(30)]|", views: shareButton)
         
-
+        
     }
     let statusTextView: UITextView = {
         let textView = UITextView()
-        textView.text = ""
+        textView.text = "Исаа́киевский собо́р — крупнейший православный храм Санкт-Петербурга. Расположен на Исаакиевской площади."
         textView.font = UIFont.systemFont(ofSize: 14)
         
         return textView
@@ -71,12 +76,12 @@ class NewsCell: UICollectionViewCell {
     let statusImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "SPB"))
         imageView.contentMode = .scaleAspectFit
-
+        
         return imageView
     }()
     
     let likeCommentLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.numberOfLines = 2
         label.text = "Likes 246 \nComments 38"
@@ -101,7 +106,7 @@ class NewsCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-                      
+    
     
     let nameLabel: UILabel = {
         //создали Label с двумя линиями
@@ -112,7 +117,7 @@ class NewsCell: UICollectionViewCell {
         // сконфигурировали вторую линию, заметим, что настройка происходит через attribute key (который включает параметры label и значение, которое мы хотим задать
         attributedText.append(NSAttributedString(string: "\n· September 28 · Saint Petersburg ·", attributes:
                                                     [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 13),
-                                                    NSAttributedString.Key.foregroundColor: UIColor(red: 155/255, green: 161/255, blue: 171/255, alpha: 1)]))
+                                                     NSAttributedString.Key.foregroundColor: UIColor(red: 155/255, green: 161/255, blue: 171/255, alpha: 1)]))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         
