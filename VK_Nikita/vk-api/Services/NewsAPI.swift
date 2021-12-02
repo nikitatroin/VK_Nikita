@@ -49,16 +49,20 @@ final class NewsApi {
             if let response = response as? HTTPURLResponse, response.statusCode >= 300 {
                 print(response)
             }
-                
+            
             guard let data = data else { return }
             debugPrint(data.prettyJSON as Any)
             
-            do {
-                let newsResponse = try JSONDecoder().decode(News.self, from: data)
-                let items = newsResponse.response?.items
-                completion(.success(items))
-            } catch {
-                print(error.localizedDescription)
+            DispatchQueue.global().async {
+                do {
+                    
+                    let newsResponse = try JSONDecoder().decode(News.self, from: data)
+                    let items = newsResponse.response?.items
+                    completion(.success(items))
+                    
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         }
         task.resume()
@@ -66,14 +70,14 @@ final class NewsApi {
     
     //универсальный метод
     func fetchData<T: Decodable>(url: String, responseClass: T.Type , completion:@escaping (Result<T?, NSError>) -> Void) {
-            AF.request(url, method: .get, parameters: [:], headers: [:]).responseJSON { (response) in
-                guard let statusCode = response.response?.statusCode else { return }
-                if statusCode == 200 { // Success
-                    guard let jsonResponse = try? response.result.get() else { return }
-                    guard let theJSONData = try? JSONSerialization.data(withJSONObject: jsonResponse, options: []) else { return }
-                    guard let responseObj = try? JSONDecoder().decode(T.self, from: theJSONData) else { return }
-                    completion(.success(responseObj))
-                }
+        AF.request(url, method: .get, parameters: [:], headers: [:]).responseJSON { (response) in
+            guard let statusCode = response.response?.statusCode else { return }
+            if statusCode == 200 { // Success
+                guard let jsonResponse = try? response.result.get() else { return }
+                guard let theJSONData = try? JSONSerialization.data(withJSONObject: jsonResponse, options: []) else { return }
+                guard let responseObj = try? JSONDecoder().decode(T.self, from: theJSONData) else { return }
+                completion(.success(responseObj))
             }
         }
+    }
 }

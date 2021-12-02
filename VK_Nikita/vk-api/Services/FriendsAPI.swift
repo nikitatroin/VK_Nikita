@@ -51,7 +51,6 @@ final class FriendsApi {
             
             guard let data = data else { return }
 
-            
             do {
                 let items = try JSON(data)["response"]["items"].rawData()
                 let friends =  try JSONDecoder().decode([FriendModel].self, from: items)
