@@ -70,7 +70,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="jcA-3P-WQU"/>
+                        <segue destination="CHf-gg-Pyn" kind="relationship" relationship="rootViewController" id="axy-Ie-psj"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNj-nN-AYr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -86,33 +86,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="image" id="S4I-bJ-Jsh" customClass="ConcurrencyTableViewCell" customModule="VK_Nikita" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="uJY-y6-YXH" style="IBUITableViewCellStyleDefault" id="i0F-mO-WeE">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S4I-bJ-Jsh" id="Kbw-Cn-T9X">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i0F-mO-WeE" id="eFG-EH-r49">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pUa-r6-qSh">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                        </imageView>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Yr5-s5-yP5">
-                                            <rect key="frame" x="197" y="12" width="20" height="20"/>
-                                        </activityIndicatorView>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uJY-y6-YXH">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Yr5-s5-yP5" firstAttribute="centerX" secondItem="Kbw-Cn-T9X" secondAttribute="centerX" id="EvH-bQ-3lZ"/>
-                                        <constraint firstItem="Yr5-s5-yP5" firstAttribute="centerY" secondItem="Kbw-Cn-T9X" secondAttribute="centerY" id="KDg-aQ-Uwy"/>
-                                        <constraint firstAttribute="bottom" secondItem="pUa-r6-qSh" secondAttribute="bottom" id="Res-DP-B6h"/>
-                                        <constraint firstAttribute="trailing" secondItem="pUa-r6-qSh" secondAttribute="trailing" id="btD-2C-w8i"/>
-                                        <constraint firstItem="pUa-r6-qSh" firstAttribute="top" secondItem="Kbw-Cn-T9X" secondAttribute="top" id="jFl-ZL-1mO"/>
-                                        <constraint firstItem="pUa-r6-qSh" firstAttribute="leading" secondItem="Kbw-Cn-T9X" secondAttribute="leading" id="m5g-0e-dbr"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="spinner" destination="Yr5-s5-yP5" id="G6u-nC-wJp"/>
-                                    <outlet property="tImage" destination="pUa-r6-qSh" id="yVq-aF-Ec6"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

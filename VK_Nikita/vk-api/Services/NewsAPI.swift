@@ -51,11 +51,10 @@ final class NewsApi {
             }
             
             guard let data = data else { return }
-            debugPrint(data.prettyJSON as Any)
+            //debugPrint(data.prettyJSON as Any)
             
             DispatchQueue.global().async {
                 do {
-                    
                     let newsResponse = try JSONDecoder().decode(News.self, from: data)
                     let items = newsResponse.response?.items
                     completion(.success(items))

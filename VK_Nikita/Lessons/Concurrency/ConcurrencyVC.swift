@@ -5,17 +5,20 @@
 //  Created by Никита Троян on 25.11.2021.
 //
 import UIKit
+import Alamofire
+
+
 
 final class ConcurrencyVC: UIViewController {
+    
+    @IBOutlet weak var myTextLabel: UILabel!
     
     @IBOutlet weak var image1: UIImageView!
     @IBOutlet weak var image2: UIImageView!
     @IBOutlet weak var image3: UIImageView!
     @IBOutlet weak var image4: UIImageView!
     
-    
     private var loadedImages: [UIImage] = []
-    
     
     private let imageURLs: [String] =
     ["http://www.planetware.com/photos-large/F/france-paris-eiffel-tower.jpg",
@@ -23,12 +26,12 @@ final class ConcurrencyVC: UIViewController {
      "http://bestkora.com/IosDeveloper/wp-content/uploads/2016/12/Screen-Shot-2017-01-17-at-9.33.52-PM.png",
      "https://www.nawpic.com/media/2020/galaxy-background-nawpic-4.jpg"]
     
-    private let url =  "http://www.planetware.com/photos-large/F/france-paris-eiffel-tower.jpg"
+    private let url =  "https://jsonplaceholder.typicode.com/posts"
     
     let dispatchGroup = DispatchGroup()
     
     private var image: UIImageView = {
-        var image = UIImageView()
+        var image = UIImageView(image:UIImage(named: "Машина")!)
         image.frame = CGRect(x: 120, y: 200, width: 200, height: 200)
         image.backgroundColor = .white
         image.contentMode = .scaleAspectFit
@@ -37,7 +40,11 @@ final class ConcurrencyVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        asyncGroup()
+        //getDataRequest(url)
+        //self.view.addSubview(image)
+        //self.addBlur()
+        //addOperation()
+        //asyncGroup()
         //fetchImage3()
         //self.view.addSubview(image)
         //fetchImage2()
@@ -47,15 +54,59 @@ final class ConcurrencyVC: UIViewController {
         //thread.start()
         
     }
+    //MARK: - Operation part
+    //собственная очередь
+    let myOwnQueue = OperationQueue()
     
-    func asyncGroup() {
+    private func addOperation() {
+        // Добавляем операцию в очередь
+        myOwnQueue.addOperation {
+            // Выполняем расчеты
+            let summ = 4 + 5
+            let stringSumm = String(describing: summ)
+            // Добавляем операцию на главный поток для работы с UI
+            OperationQueue.main.addOperation { [weak self] in
+                guard let self = self else { return }
+                self.myTextLabel.text = stringSumm
+            }
+        }
+    }
+    
+    func addBlur() {
+        //передаём в класс изоброжение
+        let blurOperation = BlurImageOperation(image: UIImage(named: "Машина")!)
+        //отслеживаем выполнение, присваиваем нужному изображению результат
+        blurOperation.completionBlock = {
+            OperationQueue.main.addOperation {
+                self.image1.image = blurOperation.outputImage
+            }
+        }
+        self.myOwnQueue.addOperation(blurOperation)
+    }
+    
+   private func getDataRequest(_ url: String) {
+       //получили url, засунули его в запрос от AF
+        let request = AF.request(url)
+       //использовали наш класс, передали ему в init запрос
+        let operation = GetDataOperation(request: request)
+       // когда операция будет выполнена, принтанём её на main потоке
+        operation.completionBlock = {
+            print(operation.data?.prettyJSON as Any)
+        }
+       // добавили операцию в очередь на исполнение
+       myOwnQueue.addOperation(operation)
+    }
+    
+    
+    //MARK: - GCD part
+    private func asyncGroup() {
         let group = DispatchGroup()
         //группа с асинхронными операциями
         for i in 0...3 {
-            //вручную повышаем счётчик 
+            //вручную повышаем счётчик
             group.enter()
             asyncLoadImage(imageURL: imageURLs[i],
-                           runQueue: DispatchQueue.global(),
+                           runQueue: DispatchQueue.global(qos: .userInteractive),
                            completionQueue: DispatchQueue.main) { image, error in
                 guard let image = image else { return }
                 self.loadedImages.append(image)
@@ -80,7 +131,7 @@ final class ConcurrencyVC: UIViewController {
     }
     
     
-
+    
     private func fetchImage3() {
         //формирование групп из синхронных операций
         for i in 0...1 {
